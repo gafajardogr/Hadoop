@@ -2,7 +2,7 @@
 NO CAMBIAR!!
 Codificación, idioma, tabla de contenidos, tipo de documento
 ////
-:encod`ing: utf-8
+:encoding: utf-8
 :lang: es
 :toc: right
 :toc-title: Tabla de contenidos
@@ -63,40 +63,41 @@ Usaremos HDP® 2.5: Ready for the enterprise
 Automated (with Ambari 2.4) (https://es.hortonworks.com/downloads/#sandbox)
 
 * HDP: 127.0.0.1:8888
-* Ambari: 127.0.0.1:8080
+* Ambari: 127.0.0.1:8080 (User y pass: `maria_dev`)
 
 Let's download some movie data. So, if you go to your browser and go to grouplens.org, this will take you to some free data that contains some real movie ratings by real people that we can play with. MovieLens 100K Dataset (http://grouplens.org/datasets/movielens/100k/)
 
-This contains a bunch of files
+This contains a bunch of files that contain movie ratings data.
 
-that contain movie ratings data.
+The `u.data`` file is what contains the actual ratings data. If we open that up in Word Pad or Notepad or something, you can take a look at the format here. Basically, these are four columns of information. The first column is a user ID. The second column is a movie ID and then a rating from a score of one to five and a timestamp.
 
-The u.data file is what contains the actual ratings data. If we open that up in Word Pad or Notepad or something, you can take a look at the format here. Basically, these are four columns of information. The first column is a user ID. The second column is a movie ID and then a rating from a score of one to five and a timestamp.
+`u.item` contiene la descripción de las películas.
 
-u.item contiene la descripción de las películas
-
-Just go to our browser and go to 127.0.0.1:8888. User y pass: maria_dev. And that brings us into Ambari, which let's us visualize what's going on in our little Hadoop cluster here.
+Just go to our browser and go to 127.0.0.1:8888. That brings us into Ambari, which let's us visualize what's going on in our little Hadoop cluster here.
 
 [IMPORTANT]
 ====
-Haddop está instalado en la máquina virtual como un contenedor. Para iniciar una sesión SSH en el contenedor deberemos hacerlo por el puerto 2222 (`ssh maria_dev@127.0.0.1 -p 2222`)
+Hadoop está instalado en la máquina virtual como un contenedor. Para iniciar una sesión SSH en el contenedor deberemos hacerlo por el puerto 2222 (`ssh maria_dev@127.0.0.1 -p 2222`)
 
-Para poder actualizar paquete hay que iniciar sesión como `root (su root)` y editar con `less` el archivo `\etc\yum.repos.d\sandbox.repo` y hacer `enabled = 0`
+Para poder actualizar paquetes hay que iniciar sesión como `root (su root)` y editar con `less` el archivo `\etc\yum.repos.d\sandbox.repo` y hacer `enabled = 0`
 ====
 
 Now, the beautiful thing is that with Hadoop, you don't really have to worry about if it's running on one system, like we're doing now, or on multiple notes of an entire cluster of computers. All that is generally abstracted for you from Hadoop, so as a programmer or a developer or a analyst, what you do to develop under Hadoop is not going to be a whole lot different if you're running on one machine versus an entire cluster of machines.
 
 The main difference is how much data you can actually handle
 
-So, what we're going to do is import that movie ratings data that we downloaded into our Hadoop cluster and we're going to use something called Hive to actually allow us to execute sequel queries on top of that data, even though it's not really being stored in the relational database.
+So, what we're going to do is import that movie ratings data that we downloaded into our Hadoop cluster and we're going to use something called Hive to actually allow us to execute SQL queries on top of that data, even though it's not really being stored in the relational database.
 
+[source]
+----
 Hive View - Upload Table - Upload from local
 Table name: 
 
 * Ratings (user_id, movie_id, rating, rating_time)
 * Movie_names (movie_id, name, movie_date)
+----
 
-Let's write a little standard sequel query and, again, this is kinda cool because we're not really on a relational database here. This is just a tool called Hive that let's us interact with our data on Hadoop as if it were a relational database.
+Let's write a little standard SQL query and, again, this is kinda cool because we're not really on a relational database here. This is just a tool called Hive that let's us interact with our data on Hadoop as if it were a relational database.
 
 ----
 SELECT movie_id, COUNT(movie_id) as ratingCount
@@ -109,7 +110,7 @@ Probar con Visualización SQL, datos, explorer, ...
 
 ### What is Hadoop
 
-Well the definition from Hortonworks which is one of the major vendors of Hadoop platforms is an open source software platform for distributed storage and distributed processing very large data sets on computer clusters built from commodity hardware.
+Well, the definition from Hortonworks, which is one of the major vendors of Hadoop platforms, is an open source software platform for distributed storage and distributed processing very large data sets on computer clusters built from commodity hardware.
 
 Hadoop gives you a way of viewing all of the data distributed across all of the hard drives in your cluster as one single file system. And not only that it's also very redundant. Actually doing that all in a parallel manner so it can actually set all the CPU cores on your entire cluster chugging away on that problem in parallel.
 
@@ -122,18 +123,18 @@ image::./CoreHadoopEcosystem.png[]
 * HDFS: It allows us to distribute the storage of big data across our cluster of computers so it makes all of the hard drives on our cluster look like one giant file system. And not only that it actually maintains redundant copies of that data.
 * YARN (yet another resource negotiator): It is basically the system that manages the resources on your computing cluster. It's what decides what gets to run tasks and when. Which ones are available or not available.
 * MapReduce: It is just a programming metaphor or programming model that allows you to process your data across an entire cluster.  Mappers have the ability to transform your data in parallel across your entire computing cluster in a very efficient manner.And reducers are what aggregate that data together.
-* Pig: If you don't want to write Java or python map reduce code and you're more familiar with a scripting language that has sort of a SQL style syntax Pig is for you.
-* Hive: It solves a similar problem to pig but it really more directly looks like a SQL database so hive is a way of actually taking SQL queries and making this distributed data that's just really sitting on your file system somewhere look like a SQL database. You can even connect to it through a shell client or ODBC or what have you. And actually execute SQL queries on the data that's stored on your Hadoop cluster even though it's not really a relational database under the hood.
+* Pig: If you don't want to write Java or Python MapReduce code and you're more familiar with a scripting language that has sort of a SQL style syntax Pig is for you.
+* Hive: It solves a similar problem to Pig but it really more directly looks like a SQL database. So, Hive is a way of actually taking SQL queries and making this distributed data that's just really sitting on your file system somewhere look like a SQL database. You can even connect to it through a shell client or ODBC or what have you. And actually execute SQL queries on the data that's stored on your Hadoop cluster even though it's not really a relational database under the hood.
 * Ambari (el que usa Hortoworks): It is basically this thing that sits on top of everything and it just gives you a view of the state of your cluster and lets you visualize what's running on your cluster What systems are using how much resources and also has some views in it that allow you to actually do things like execute hive queries or import databases into hive or execute Pig queries and things like that.
-* Mesos: It isn't really part of Hadoop proper but I'm including it here because it's basically an alternative to yarn. Mesos is another potential way of managing the resources on your cluster.
+* Mesos: It isn't really part of Hadoop proper but I'm including it here because it's basically an alternative to YARN. Mesos is another potential way of managing the resources on your cluster.
 * Spark: Análogo a MapReduce. Es más rápido y es para trabajar con datos en memoria. Además, puede hacer Machine Learning, Procesamiento de datos en streaming en tiempo real
-* HBase: Base de datos NoSQL de columnas para exponer los datos del clúster a plataformas transaccionales ¿?? Se puede usar para exponer los datos de MapReduce o Spark a otros sistemas
+* HBase: Base de datos NoSQL de columnas para exponer los datos del clúster a plataformas transaccionales. Tiene gran cantidad de conectores que nos permite cargar o volcar datos a otras BD. Se puede usar para exponer los datos de MapReduce o Spark a otros sistemas
 * Apache Storm: Para procesamiento de datos en streaming
 * Oozie: Oozie is just a way of scheduling jobs on your cluster.
 * Zookeeper: It's basically a technology for coordinating everything on your cluster. So it's it's the technology that can be used for keeping track of which nodes are up which nodes are down.
 * Data ingestion:
-    ** Sqoop: para transferir datos entre bases de datos relacionales y Hadoop
-    ** Flume: It's a way of actually transporting Web logs at a very large scale and very reliably to your cluster. So let's say you have a fleet of web servers. Flume can actually listen to the web logs coming in from those web servers in real time and publish them into your cluster in real time for processing by something like storm or spark streaming.
+    ** Sqoop: Para transferir datos entre bases de datos relacionales y Hadoop
+    ** Flume: It's a way of actually transporting Web logs at a very large scale and very reliably to your cluster. So let's say you have a fleet of web servers. Flume can actually listen to the web logs coming in from those web servers in real time and publish them into your cluster in real time for processing by something like Storm or Spark streaming.
     ** Kafka: Kafka solves a similar problem although it's a little bit more general purpose. It can basically collect data of any sort from a cluster of PCs from a cluster of web servers or whatever it is and broadcast that into your Hadoop cluster as well.
 * External Storage: Almacenamiento que introducen datos o guardan resultados de procesamiento del cluster Hadoop
     ** MySQL
@@ -151,7 +152,7 @@ image::./CoreHadoopEcosystem.png[]
 Divide y distribuye archivos de gran tamaño en bloques de 128 MB de forma predeterminada.
 
 * Name node: Guarda dónde está cada bloque de cada archivo
-* Data node: Los que almacenan realmene los datos
+* Data node: Los que almacenan realmente los datos
 
 [TIP]
 ====
@@ -159,19 +160,24 @@ Se puede montar un cluster HDFS en Linux vía NFS, NFS Gateways en concreto.
 ====
 
 * Subir un archivo desde Ambari: 
-    ** Crear una carpeta (user -> maria_dev -> ml-100k)
-    ** Subir el archivo de Movielens (u.data, u.item)
-    ** Renombrarlos
+    ** Crear una carpeta (`/user/maria_dev/ml-100k``)
+    ** Subir los archivos de Movielens (`u.data, u.item`)
+    ** Renombrarlos y volverlos a dejar con el mismo nombre
 * Subir un archivo desde línea de comandos
-    ** SSH a maria_dev@127.0.0.1 (puerto 2222)
-    ** hadoop fs -mkdir ml-100k
-    ** hadoop fs -copyFromLocal u.data ml-100K/u.data
+    ** SSH a `maria_dev@127.0.0.1` (puerto 2222)
+    ** `hadoop fs -mkdir ml-100k`
+    ** `hadoop fs -copyFromLocal u.data ml-100K/u.data`
     
 ## Comprendiendo MapReduce
 
-A partir de un archivo que guarda user_id, movie_id, rating y timestamp, obtener la cantidad de películas que ha valorado cada usuario
+A partir de un archivo que guarda _user_id, movie_id, rating_ y _timestamp_, obtener la cantidad de películas que ha valorado cada usuario
 
 image::MapReduceInAction.png[]
+
+[TIP]
+====
+Piensa en la operación _Shuffle and sort_ como un `GROUP BY` de SQL y en la operación _Reduce_ como las funciones de agregación (`COUNT, SUM, AVG, ...`).
+====
 
 Otro ejemplo podría ser obtener la cantidad de valoraciones por valoración:
 
@@ -182,20 +188,22 @@ image::./MapReduceCantidadValoracionesPorValoracion.png[]
 image::MapReduceMapper.png[]
 
 El _mapper_ toma tres parámetros:
-* La instancia del objeto en el que está contenido
-* No se suele usar en el caso de los mappers
-* La entrada (línea) con la que va a trabajar
 
-Vamos a extraer 4 variables (userID, movieID, rating, timestam) tras la división de la línea mediante tabuladores.
+. La instancia del objeto en el que está contenido
+. No se suele usar en el caso de los mappers
+. La entrada (línea) con la que va a trabajar
+
+Vamos a extraer 4 variables (userID, movieID, rating, timestamp) tras la división de la línea mediante tabuladores.
 
 ### El Reducer
 
 image::MapReduceReducer.png[]
 
-EL _reducer_ toma tres parámetros:
-* La instancia del objeto en el que se está ejecutando
-* La función reducer que se llamará una vez para cada clave única
-* La lista de valores asociados a la clave
+El _reducer_ toma tres parámetros:
+
+. La instancia del objeto en el que se está ejecutando
+. La función reducer que se llamará una vez para cada clave única????
+. La lista de valores asociados a la clave
 
 ### Todo junto
 
@@ -204,6 +212,8 @@ image::MapReduceTodoJunto.png[]
 La función _steps_ indica al framework qué funciones se usan para los mappers y los reducers en nuestros trabajos.
 
 ### Instalación de lo que necesitamos
+
+Recordar que para poder actualizar paquetes hay que iniciar sesión como root (su root) y editar con less el archivo \etc\yum.repos.d\sandbox.repo y hacer enabled = 0
 
 [source]
 ----
@@ -230,7 +240,7 @@ python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/had
 
 ### MapReduce con varios pasos
 
-¿Qué ocurre si queremos hacer más de un paso map o un paso reduce? Por ejemplo, queremos devolver las películas mejor valoradas. 
+¿Qué ocurre si queremos hacer más de un paso Map o un paso Reduce? Por ejemplo, queremos devolver las películas mejor valoradas. 
 
 Habría que hacer MapReduce para obtener la valoración de cada película y luego ordenarlas.
 
@@ -281,7 +291,7 @@ if __name__ == '__main__':
 
 La creación de mappers y reducers a mano es una tarea pesada.
 
-Pig introduce _Pig Latin_, un lenguaje de scripting con sintaxis tipo SQL para definir pasos map y reduce. Además, se puede extender fácilmente con funciones definidas por usuario (UDF)
+Pig introduce _Pig Latin_, un lenguaje de scripting con sintaxis tipo SQL para definir pasos Map y Reduce. Además, se puede extender fácilmente con funciones definidas por usuario (UDF)
 
 [NOTE]
 ====
@@ -289,8 +299,6 @@ El uso de Pig no implica una penalización en rendimiento, sino todo lo contrari
 ====
 
 Ejemplo: Obtener las películas más antiguas con 5 estrellas
-
-image::PigPeliculasAntiguasCon5Estrellas.png[]
 
 [source]
 ----
@@ -326,7 +334,7 @@ Como resultado:
 
 [TIP]
 ====
-Pig tiene gran cantidad de operadores y funciones interesantes (CUBE, COGROUP, ...), funciones de agregación SIZE y CONCAT, integración con HBase, y más. Consultar https://pig.apache.org/docs/latest/basic.html#group
+Pig tiene gran cantidad de operadores y funciones interesantes (`CUBE, COGROUP`, ...), funciones de agregación `SIZE` y `CONCAT`, integración con HBase, y más. Consultar https://pig.apache.org/docs/latest/basic.html#group
 ====
 
 Ejemplo: Obtener las películas con calificación inferior a 2 y mayor cantidad de comentarios.
@@ -368,15 +376,15 @@ Esta sería una muestra del resultado final:
 
 ## Spark
 
-Spark es un motor rápido para el procesamiento de datos a gran escala. Tiene características interesantes como machine learning, análisis de grafos y datos en streaming.
+Spark es un motor rápido para el procesamiento de datos a gran escala. Tiene características interesantes como Machine learning y Análisis de grafos y datos en streaming.
 
 Podemos escribir programas en Java, Python, ... que realicen manipulaciones y transformaciones complejas. Lo que lo diferencia de otras tecnologías como Pig es el ecosistema tan rico que hay alrededor de Spark.
 
 Spark es una solución basada en memoria por lo que no tiene que estar accediendo constantemente a HDFS. También tiene un motor basado en DAG que optimiza los workflows y lo hace muy rápido.
 
-A diferencia de MapReduce, en el que hay que pensar las soluciones en términos de mappers y reducers, Spark proporciona un framework, de la misma manera que Pig ofrece el suyo. Portanto, hay que trabajar en construir la solución del problema obviando cómo se van a distribuir los datos en el cluster.
+A diferencia de MapReduce, en el que hay que pensar las soluciones en términos de mappers y reducers, Spark proporciona un framework, de la misma manera que Pig ofrece el suyo. Por tanto, hay que trabajar en construir la solución del problema obviando cómo se van a distribuir los datos en el cluster.
 
-Spark se construyen en torno a lo que se denomina _Resilient Distributed Database (RDD)_. Se trata básicamente de un objeto que representa a un dataset y al que se le pueden aplicar métodos para transformarlo, reducirlo o analizarlo y producir nuevos RDDs.
+Spark se construye en torno a lo que se denomina _Resilient Distributed Database (RDD)_. Se trata básicamente de un objeto que representa a un _dataset_ y al que se le pueden aplicar métodos para transformarlo, reducirlo o analizarlo y producir nuevos RDDs.
 
 Entre los principales componentes de Spark tenemos:
 
@@ -390,7 +398,7 @@ Entre los principales componentes de Spark tenemos:
 
 [NOTE]
 ====
-Para trabar con Spark necesitamos un SparkContext (sc): Creodo por el driver y es responsable de hacer que el dataset sea resilente y distribuido. Es el que crea los RDDs.
+Para trabajar con Spark necesitamos un SparkContext (sc): Creado por el driver y es responsable de hacer que el dataset sea resilente y distribuido. Es el que crea los RDDs.
 ====
 
 * A partir de archivos externos (sistema de archivos local, HDFS, S3, ...)
@@ -406,7 +414,7 @@ A partir de un SparkContext podemos crear un contexto Hive, que nos permitir tra
 
 [source]
 ----
-rdd = sc.parallelize(1, 2, 3, 4])
+rdd = sc.parallelize([1, 2, 3, 4])
 squareRDD = rdd.map(lambda x: x * x) <1>
 
 -- Esto devuelve 1, 4, 9, 16
@@ -414,6 +422,7 @@ squareRDD = rdd.map(lambda x: x * x) <1>
 <1> Define una función el línea que toma `x` como parámetro de entrada y devuelve su cuadrado. Es una forma muy compacta de definir la función. A `map` se le está pasando una función como argumento.
 
 Transformaciones sobre RDD:
+
 * map
 * flatmap
 * filter
@@ -422,6 +431,7 @@ Transformaciones sobre RDD:
 * union, interesect, substract, cartesian
 
 Acciones sobre RDD:
+
 * collect
 * count
 * countByValue
@@ -434,14 +444,14 @@ Acciones sobre RDD:
 
 [NOTE]
 ====
-Entrar en Ambari como Admin y modificar la configuración de los servicios Spark 1 y Spark 2.
+Entrar en Ambari como admin y modificar la configuración de los servicios Spark 1 y Spark 2.
 Desplegar _Advanced spark-log4j-properties_ y cambiar `log4j.rootCategory` al valor `ERROR.console`
 ====
 
-. Desde Ambari crear la carpeta ml-100k en maria_dev y subir los archivos u.data y u.info de Movielens
-. Conectar por SSH a la máquina virtual a la cuenta de maria_dev
-. Crear una carpeta en el home de maria_dev ml-100k y descargar la información de las películas `wget http://media.sundog-soft.com/hadoop/ml-100k/u.info`
-. En el home de maria_dev descargar los ejemplos de Spark `wget http://media.sundog-soft.com/hadoop/Spark.zip`
+. Desde Ambari crear la carpeta `ml-100k` en `maria_dev`` y subir los archivos `u.data` y `u.info` de Movielens
+. Conectar por SSH a la máquina virtual a la cuenta de `maria_dev`
+. Crear una carpeta en el home de `maria_dev ml-100k` y descargar la información de las películas `wget http://media.sundog-soft.com/hadoop/ml-100k/u.info`
+. En el home de `maria_dev` descargar los ejemplos de Spark `wget http://media.sundog-soft.com/hadoop/Spark.zip`
 . Descomprimir el zip
 . Ejecutar el programa Spark `spark-submit LowestRatedMovieSpark.py`
 
@@ -470,9 +480,7 @@ El resultado es:
 
 Los RDD no son más que un conjunto de filas. No tienen tipo de datos.
 
-Los data frames son una extensión de los RDD que contienen objetos cuyas filas contienen datos estructurados. Con los data frames disponemos de columnas y podremos lanzarles consultas.
-
-Al tener columnas, se pueden optimizar las consultas haciendo que las respuestas sean más rápidas. Además, nos podremos comunicar mediante JDBC o Tableau y demás, lo que nos permite trabajar a alto nivel.
+En cambio, los data frames son una extensión de los RDD que contienen objetos cuyas filas contienen datos estructurados. Con los data frames disponemos de columnas y podremos lanzarles consultas. Al tener columnas, se pueden optimizar las consultas haciendo que las respuestas sean más rápidas. Además, nos podremos comunicar mediante JDBC o Tableau y demás, lo que nos permite trabajar a alto nivel.
 
 Los datasets son un término más general que los data frames. Los datasets pueden guardar información con tipo pero necesariamente no tienen por que ser una fila como ocurre con los data frames.
 
@@ -687,8 +695,8 @@ Hive traduce las consultas a trabajos MapReduce o Tez.
 Limitaciones:
 
 * Latencia alta. Las consultas tienen que ser traducidas a MapReduce y los trabajos MapReduce tardan bastante en ponerse en marcha.
-* Los datos debven guardarse de forma desnormalizada para que aumente la velocidad de las consultas
-* Realmente, no es una base de datos por lo que no hay transacciones no permite operaciones de inserción, modificación o eliminación.
+* Los datos deben guardarse de forma desnormalizada para que aumente la velocidad de las consultas
+* Realmente, no es una base de datos por lo que no hay transacciones y no permite operaciones de inserción, modificación o eliminación.
 
 Ejemplo: Películas con más valoraciones
 
@@ -739,7 +747,7 @@ WHERE ratingCount > 10;
 
 ## Sqoop
 
-SQL + Hadoop. Nos permite importar y exportar datos de bases de datos relacionales y Hadoop.
+Abreviatura de SQL + Hadoop. Nos permite importar y exportar datos de bases de datos relacionales y Hadoop.
 
 Ejemplo: Importar una tabla a Hadoop
 
@@ -764,7 +772,7 @@ Incremental imports are performed by comparing the values in a check column agai
 
 Esto nos permite tener sincronizado a Hadoop con la base de datos.
 
-### Exportar datos a MySQL
+### Intercambio de datos con MySQL
 
 [source]
 ----
@@ -784,7 +792,7 @@ Para la versión de HDP 2.6.5 y posteriores hay que configurar el pass del usuar
 image::MySQLResetPassword.png[]
 ====
 
-Ejemplo: Importar datos a MySQL
+#### Ejemplo: Importar datos a MySQL
 
 [source]
 ----
@@ -823,7 +831,7 @@ mysql> GRANT ALL PRIVILEGES ON movielens.* TO ''@'localhost'; <4>
 
 [NOTE]
 ====
-Para importar los datos en Hive, primero deberíamos borrar el directorio `movies` de `maria_dev`, ya que la importación a Hive volverá a crearlo como paso intermedio para volcar los datos en él antes de importarlos a Hive.
+Para importar los datos a Hive, primero deberíamos borrar el directorio `movies` de `maria_dev`, ya que la importación a Hive volverá a crearlo como paso intermedio para volcar los datos en él antes de importarlos a Hive.
 
 [source]
 ----
@@ -831,7 +839,7 @@ Para importar los datos en Hive, primero deberíamos borrar el directorio `movie
 ----
 ====
 
-Ejemplo: Exportar datos a MySQL
+#### Ejemplo: Exportar datos a MySQL
 
 [source]
 ----
@@ -861,12 +869,11 @@ image::HBaseRatingColumnFamily.png[]
 En la imagen la familia de columnas es _rating_ y las columnas son los identificadores de películas (50, 33 y 223).
 
 * Expondremos el servicio a través de un puerto de la máquina virtual de HDP. En Virtual Box configuraremos `Settings | Network | Advanced | Port Forwarding. Añadiremos una regla denominada *HBase REST* que mapeará los puertos *8000*.
-* Iniciar sesión en Ambari cono admin e iniciar el servicio HBase.
+* Iniciar sesión en Ambari cono `admin` e iniciar el servicio HBase.
 * Iniciar sesión SSH en la máquina virtual 
-* Cambiar al usuario `root` y arrancar el servicio REST de HBase ([root@sandbox maria_dev]# /usr/hdp/current/hbase-master/bin/hbase-daemon.sh start rest -p 8000 --infoport 8001
-)
+* Cambiar al usuario `root` y arrancar el servicio REST de HBase (`[root@sandbox maria_dev]# /usr/hdp/current/hbase-master/bin/hbase-daemon.sh start rest -p 8000 --infoport 8001`)
 * Instalar con `pip` el módulo `starbase` para poder interactuar con HBase.
-* Ejecutar el script Python que carga la tabla HBase y muestra un ejemplo de valoraciones de dos usuarios (`%python ..../HBaseExamples.py`)
+* Ejecutar el script Python que carga la tabla HBase y muestra un ejemplo de valoraciones de dos usuarios (`python ..../HBaseExamples.py`)
 
 
 [source]
@@ -948,7 +955,7 @@ hbase(main):002:0> create 'users','userinfo'  <1>
 ----
 <1> Crear una tabla `users` con una familia de columnas denominada `userinfo`
 
-Este sería el script Pig que usaríamos. En el script vemos que el ID es único y es la primera columna. También se ve el mapeo de las columnas del archivo HDFS contra la familia de columnas.
+Este sería el script Pig que usaríamos. En el script vemos que el ID único ocupa la primera columna. También se ve el mapeo de las columnas del archivo HDFS contra la familia de columnas.
 
 [source]
 ----
@@ -989,33 +996,34 @@ Para eliminar la tabla primero hay que desactivarla con `disable`
 ## Cassandra
 
 Es un DBMS distribuido que no tiene un punto de fallo único. A diferencia de HBase, no tiene nodo máster (el nodo que guarda qué datos guarda cada nodo). Está concebido para la disponibilidad.
+
 * Su modelo de datos es similar al de HBase/BigTable
 * Ofrece CQL, su lenguaje de consulta
 * Cassandra proporciona consistencia eventual.
 
 .El Teorema de CAP, consistencia eventual y consistencia ajustable
 ****
-Siguiendo el Teorema de CAP, los problemas de Big Data necesitan Tolerancia a fallos (usamos HDFS y nuestro sistema es distribuido y tolerante a fallos de partida), por lo que tenemos que decidir entre Consistencia y Disponibilidad. Cassandra elige consistencia eventual porque si envías un post a una red social no se cae el mundo si el resto de usuarios no ven el post hasta que no pasen 2 ó 3 segundos, lo que tarde en propagar el cambio por todo el cluster.
+Siguiendo el Teorema de CAP, los problemas de Big Data necesitan Tolerancia a fallos (usamos HDFS y nuestro sistema es distribuido y tolerante a fallos de partida), por lo que tenemos que decidir entre Consistencia y Disponibilidad. Cassandra sacrifica Disponibilidad ofreciendo _consistencia eventual_ porque si envías un post a una red social no se cae el mundo si el resto de usuarios no ven el post hasta que no pasen 2 ó 3 segundos, lo que tarde en propagar el cambio por todo el cluster.
 
-No obstante, en Cassandra se puede ajustar el número de nodos que tienen que confirmar la recepción de un cambio para que se por correcto. Es lo que se conoce como _Consistencia ajustable_
+No obstante, en Cassandra se puede ajustar el número de nodos que tienen que confirmar la recepción de un cambio para que se dé por correcto. Es lo que se conoce como _Consistencia ajustable_
 ****
 
 image::cap-theorem.png[]
 
-* Podemos tener Cassandra operativo independientemente de Hadoop, por ejemplo, sirviendo a un sitio web. No obstante, se puede crear una copia para Hadoop para enriquecerlo con capacidades analíticas (Hive, Sparrk, ...)
+* Podemos tener Cassandra operativo independientemente de Hadoop, por ejemplo, sirviendo a un sitio web. No obstante, se puede crear una copia para Hadoop para enriquecerlo con capacidades analíticas (Hive, Spark, ...)
 * CQL tiene algunas limitaciones respecto a SQL
 ** No hay joins por lo que todos los datos tienen que estar desnormalizados
-**Las consultas tienen que ser sobre la clave primaria. No se admiten índices secundarios
+** Las consultas tienen que ser sobre la clave primaria. No se admiten índices secundarios
 * Casos de uso de Cassandra y Spark
 ** Analítica de datos almacenados en Cassandra
-** Tranbsformar y guardar datos en Cassandra para uso transaccional
+** Transformar y guardar datos en Cassandra para uso transaccional
 
 
 ### Instalación de Cassandra
 
 [CAUTION]
 ====
-La máquina virtual quue estamos usando de Hortoworks contiene un sandbox en un contenedor Docker. Su versión de sistema operativo CentOS requiere Python 2.6. Sin embargo Cassandra necesita Python 2.7.
+La máquina virtual quue estamos usando de Hortonworks contiene un sandbox en un contenedor Docker. Su versión de sistema operativo CentOS requiere Python 2.6. Sin embargo Cassandra necesita Python 2.7.
 ====
 
 . Conexión por SSH a la máquina virtual a la cuenta de `maria_dev`
@@ -1042,7 +1050,10 @@ gpgcheck = 0
 . `cqlsh> USE movielens;`
 . `cqlsh:movielens> CREATE TABLE users(user_id int, age int, gender text, occupation text, zip text, PRIMARY KEY(user_id));`
 . `cqlsh:movielens> DESCRIBE TABLE users;`
-. `cqlsh:movielens> SELECT * FROM users;`### Carga de datos en Cassandra desde Spark
+. `cqlsh:movielens> SELECT * FROM users;`
+
+
+### Carga de datos en Cassandra desde Spark
 
 [NOTE]
 ====
@@ -1105,6 +1116,65 @@ Para ejecutar el archivo:
 spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11 CassandraSpark.py <1>
 ----
 <1> Indicamos la versión 2.0.0 de del conector compatible con Spark 2.0 y Scala 2.11. Estos parámetros se ajustarán a la versión con la que estemos ejecutando.
+
+## MongoDB
+
+En el triángulo del teorema de CAP, MongoDB se sitúa en CP. Al manejar Big Data está comprometido con Tolerancia a fallos, y a la hora de elegir entre Consistencia y Disponibilidad, elige Consistencia. La Disponibilidad la deja entonces _comprometida_ teniendo un único máster, que es la base de datos a la que tienes que dirigirte si necesitas consistencia. Si el máster cae hay un periodo de no disponbilidad mientras otro master vuelve a estar disponible.
+
+El éxito de MongoDB se debe en gran parte a la flexibildad de su modelo de datos. Entre sus principales características:
+
+* Estructura de documentos flexible
+* No es necesaria la creación de una _clave_ por parte nuestra.
+* Permite la creación de índices, incluyendo índices fulltext e índices espaciales
+* Permite la creación de shards sobre alguno de los índices definidos
+* Dispone de un sistema de archivos propio para particionado denominado GridFS, que permite evitar el uso de Hadoop para manejar documentos muy grandes.
+* Existe una base de datos principal y nodos secundarios conectados a la principal donce se replican los datos. Por tanto, así no va a servir directamente para Big data, ya que lo que tenemos son copias de una base de datos monolítica.
+
+[NOTE]
+====
+MongoDB ofrece un conector SQL que traduce consultas SQL a consultas en MongoDB. Es útil para integrar MongoDB con herramientas de BI de las usadas con bases de datos relacionales (p.e Tableau). https://docs.mongodb.com/bi-connector/master/supported-operations/
+====
+
+### Detalles a tener en cuenta con los Replica Sets
+
+* Es necesario contar con una mayoría entre un número impar de servidores. Por tanto, necesitamos al menos 3 servidores.
+* Las aplicaciones tienen que tener conocimiento de varios servidores del replica set para poder llegar al principal
+* Las réplicas ofrecen durabilidad. No es conveniente leer directamente de los secundarios.
+* La base de datos queda en modo lectura mientras se elige un nuevo primario.
+
+### Sharding 
+
+Para conseguir Big data con MongoDB necesitamos _sharding_. El _sharding_ se combina con los replica sets de forma que cada replica set es responsable de un rango de valores de acuerdo a un índice definido previamente. El servidor de aplicaciones ejecuta un proceso denominado `mongos` que interactúa con los _servidores de configuración_ que son los que saben cómo está definido el _sharding_ y en qué servidores están los datos que necesitamos.
+
+[NOTE]
+====
+El _sharding_ también tiene sus caprichos:
+
+* El autosharding puede provocar lo que se denomina _split storms_, en el que los procesos `mongos` se reinician continuamente porque intenta rebalancear los _shards_ pero no consigue hacerlo a tiempo y vuelve a comenzar a rebalancear.
+* Hay que tener 3 servidores de configuración. Si uno de ellos cae, la base de datos también cae.
+====
+
+### Instalación de MongoDB
+
+Es posible instalar MongoDB como un servicio de Ambari
+
+[source]
+----
+[root@sandbox maria_dev]# cd /var/lib/ambari-server/resources/stacks/HDP/2.5/services/
+[root@sandbox services]# ls
+ACCUMULO  HBASE  KERBEROS  OOZIE       SLIDER  stack_advisor.py   TEZ
+ATLAS     HDFS   KNOX      PIG         SPARK   stack_advisor.pyc  YARN
+FALCON    HIVE   MAHOUT    RANGER      SPARK2  stack_advisor.pyo  ZEPPELIN
+FLUME     KAFKA  NIFI      RANGER_KMS  SQOOP   STORM              ZOOKEEPER
+
+[root@sandbox services]# git clone http://github.com/nikunjness/mongo-ambari.git
+
+[root@sandbox services]# service ambari restart
+----
+
+A continuación, desde Ambari y conectados como `admin`, añadimos el servicio MongoDB en el desplegable de `Actions`
+
+pip install pymongo
 
 
 ## Links

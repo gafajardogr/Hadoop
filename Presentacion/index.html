@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.5.dev">
+<meta name="generator" content="Asciidoctor 1.5.5">
 <meta name="author" content="Cloud-DI Team - Departamento de Informática. UAL">
 <title>Tame Big Data Hadoop</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -18,7 +18,6 @@ audio:not([controls]){display:none;height:0}
 [hidden],template{display:none}
 script{display:none!important}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-body{margin:0}
 a{background:transparent}
 a:focus{outline:thin dotted}
 a:active,a:hover{outline:0}
@@ -53,7 +52,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 *,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
 a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
@@ -65,7 +64,6 @@ img{-ms-interpolation-mode:bicubic}
 .text-center{text-align:center!important}
 .text-justify{text-align:justify!important}
 .hide{display:none}
-body{-webkit-font-smoothing:antialiased}
 img,object,svg{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
@@ -120,13 +118,16 @@ table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
 table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
-body{tab-size:4}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
 .clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
 .clearfix:after,.float-group:after{clear:both}
-*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
 pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
 .keyseq{color:rgba(51,51,51,.8)}
 kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
 .keyseq kbd:first-child{margin-left:0}
@@ -417,7 +418,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body class="book toc2 toc-right">
 <div id="header">
@@ -428,55 +428,63 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de contenidos</div>
 <ul class="sectlevel1">
-<li><a href="#trueresumen">Resumen</a></li>
-<li><a href="#trueconceptos-b-sicos">1. Conceptos básicos</a>
+<li><a href="#_resumen">Resumen</a></li>
+<li><a href="#_conceptos_básicos">1. Conceptos básicos</a>
 <ul class="sectlevel2">
-<li><a href="#truewhat-is-hadoop">1.1. What is Hadoop</a></li>
-<li><a href="#trueoverview-of-the-hadoop-ecosystem">1.2. Overview of the Hadoop Ecosystem</a></li>
+<li><a href="#_what_is_hadoop">1.1. What is Hadoop</a></li>
+<li><a href="#_overview_of_the_hadoop_ecosystem">1.2. Overview of the Hadoop Ecosystem</a></li>
 </ul>
 </li>
-<li><a href="#truehdfs">2. HDFS</a></li>
-<li><a href="#truecomprendiendo-mapreduce">3. Comprendiendo MapReduce</a>
+<li><a href="#_hdfs">2. HDFS</a></li>
+<li><a href="#_comprendiendo_mapreduce">3. Comprendiendo MapReduce</a>
 <ul class="sectlevel2">
-<li><a href="#trueel-mapper">3.1. El Mapper</a></li>
-<li><a href="#trueel-reducer">3.2. El Reducer</a></li>
-<li><a href="#truetodo-junto">3.3. Todo junto</a></li>
-<li><a href="#trueinstalaci-n-de-lo-que-necesitamos">3.4. Instalación de lo que necesitamos</a></li>
-<li><a href="#truemapreduce-con-varios-pasos">3.5. MapReduce con varios pasos</a></li>
+<li><a href="#_el_mapper">3.1. El Mapper</a></li>
+<li><a href="#_el_reducer">3.2. El Reducer</a></li>
+<li><a href="#_todo_junto">3.3. Todo junto</a></li>
+<li><a href="#_instalación_de_lo_que_necesitamos">3.4. Instalación de lo que necesitamos</a></li>
+<li><a href="#_mapreduce_con_varios_pasos">3.5. MapReduce con varios pasos</a></li>
 </ul>
 </li>
-<li><a href="#truepig">4. Pig</a></li>
-<li><a href="#truespark">5. Spark</a>
+<li><a href="#_pig">4. Pig</a></li>
+<li><a href="#_spark">5. Spark</a>
 <ul class="sectlevel2">
-<li><a href="#truecreaci-n-de-rdd">5.1. Creación de RDD</a></li>
-<li><a href="#trueejemplo-de-operaci-n-map">5.2. Ejemplo de operación Map</a></li>
-<li><a href="#trueejemplo-encontrar-la-pel-cula-con-la-evaluaci-n-media-m-s-baja">5.3. Ejemplo: Encontrar la película con la evaluación media más baja</a></li>
-<li><a href="#truespark-sql">5.4. Spark SQL</a></li>
+<li><a href="#_creación_de_rdd">5.1. Creación de RDD</a></li>
+<li><a href="#_ejemplo_de_operación_map">5.2. Ejemplo de operación Map</a></li>
+<li><a href="#_ejemplo_encontrar_la_película_con_la_evaluación_media_más_baja">5.3. Ejemplo: Encontrar la película con la evaluación media más baja</a></li>
+<li><a href="#_spark_sql">5.4. Spark SQL</a></li>
 </ul>
 </li>
-<li><a href="#truehive">6. Hive</a>
+<li><a href="#_hive">6. Hive</a>
 <ul class="sectlevel2">
-<li><a href="#trueparticionado">6.1. Particionado</a></li>
+<li><a href="#_particionado">6.1. Particionado</a></li>
 </ul>
 </li>
-<li><a href="#truesqoop">7. Sqoop</a>
+<li><a href="#_sqoop">7. Sqoop</a>
 <ul class="sectlevel2">
-<li><a href="#trueincremental-imports">7.1. Incremental imports</a></li>
-<li><a href="#trueexportar-datos-a-mysql">7.2. Exportar datos a MySQL</a></li>
+<li><a href="#_incremental_imports">7.1. Incremental imports</a></li>
+<li><a href="#_intercambio_de_datos_con_mysql">7.2. Intercambio de datos con MySQL</a></li>
 </ul>
 </li>
-<li><a href="#truehbase">8. HBase</a>
+<li><a href="#_hbase">8. HBase</a>
 <ul class="sectlevel2">
-<li><a href="#trueuso-de-pig-para-la-carga-de-datos-en-hbase">8.1. Uso de Pig para la carga de datos en HBase</a></li>
-<li><a href="#trueejemplo-cargar-con-pig-la-tabla-de-usuarios-en-hbase">8.2. Ejemplo: Cargar con Pig la tabla de usuarios en HBase</a></li>
+<li><a href="#_uso_de_pig_para_la_carga_de_datos_en_hbase">8.1. Uso de Pig para la carga de datos en HBase</a></li>
+<li><a href="#_ejemplo_cargar_con_pig_la_tabla_de_usuarios_en_hbase">8.2. Ejemplo: Cargar con Pig la tabla de usuarios en HBase</a></li>
 </ul>
 </li>
-<li><a href="#truecassandra">9. Cassandra</a>
+<li><a href="#_cassandra">9. Cassandra</a>
 <ul class="sectlevel2">
-<li><a href="#trueinstalaci-n-de-cassandra">9.1. Instalación de Cassandra</a></li>
+<li><a href="#_instalación_de_cassandra">9.1. Instalación de Cassandra</a></li>
+<li><a href="#_carga_de_datos_en_cassandra_desde_spark">9.2. Carga de datos en Cassandra desde Spark</a></li>
 </ul>
 </li>
-<li><a href="#truelinks">10. Links</a></li>
+<li><a href="#_mongodb">10. MongoDB</a>
+<ul class="sectlevel2">
+<li><a href="#_detalles_a_tener_en_cuenta_con_los_replica_sets">10.1. Detalles a tener en cuenta con los Replica Sets</a></li>
+<li><a href="#_sharding">10.2. Sharding</a></li>
+<li><a href="#_instalación_de_mongodb">10.3. Instalación de MongoDB</a></li>
+</ul>
+</li>
+<li><a href="#_links">11. Links</a></li>
 </ul>
 </div>
 </div>
@@ -485,13 +493,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="./images/di.png" alt="di.png">
+<img src="./images/di.png" alt="di">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="trueresumen"><a class="anchor" href="#trueresumen"></a>Resumen</h2>
+<h2 id="_resumen">Resumen</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <div class="title">Objetivos</div>
@@ -501,7 +509,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -517,7 +525,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="trueconceptos-b-sicos"><a class="anchor" href="#trueconceptos-b-sicos"></a>1. Conceptos básicos</h2>
+<h2 id="_conceptos_básicos">1. Conceptos básicos</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Hadoop is a powerful tool for transforming and analyzing massive data sets on a cluster of computers, but it consists of hundreds of distinct technologies and understanding how they fit together can be intimidating. (HBase, Hive, Flume, Kafka, MongoDB, Cassandra, Zookeeper, Spark, Storm, Hortonworks, Cloudera, &#8230;&#8203;)</p>
@@ -544,7 +552,7 @@ Automated (with Ambari 2.4) (<a href="https://es.hortonworks.com/downloads/#sand
 <p>HDP: 127.0.0.1:8888</p>
 </li>
 <li>
-<p>Ambari: 127.0.0.1:8080</p>
+<p>Ambari: 127.0.0.1:8080 (User y pass: <code>maria_dev</code>)</p>
 </li>
 </ul>
 </div>
@@ -552,32 +560,29 @@ Automated (with Ambari 2.4) (<a href="https://es.hortonworks.com/downloads/#sand
 <p>Let&#8217;s download some movie data. So, if you go to your browser and go to grouplens.org, this will take you to some free data that contains some real movie ratings by real people that we can play with. MovieLens 100K Dataset (<a href="http://grouplens.org/datasets/movielens/100k/" class="bare">http://grouplens.org/datasets/movielens/100k/</a>)</p>
 </div>
 <div class="paragraph">
-<p>This contains a bunch of files</p>
+<p>This contains a bunch of files that contain movie ratings data.</p>
 </div>
 <div class="paragraph">
-<p>that contain movie ratings data.</p>
+<p>The <code>u.data`</code> file is what contains the actual ratings data. If we open that up in Word Pad or Notepad or something, you can take a look at the format here. Basically, these are four columns of information. The first column is a user ID. The second column is a movie ID and then a rating from a score of one to five and a timestamp.</p>
 </div>
 <div class="paragraph">
-<p>The u.data file is what contains the actual ratings data. If we open that up in Word Pad or Notepad or something, you can take a look at the format here. Basically, these are four columns of information. The first column is a user ID. The second column is a movie ID and then a rating from a score of one to five and a timestamp.</p>
+<p><code>u.item</code> contiene la descripción de las películas.</p>
 </div>
 <div class="paragraph">
-<p>u.item contiene la descripción de las películas</p>
-</div>
-<div class="paragraph">
-<p>Just go to our browser and go to 127.0.0.1:8888. User y pass: maria_dev. And that brings us into Ambari, which let&#8217;s us visualize what&#8217;s going on in our little Hadoop cluster here.</p>
+<p>Just go to our browser and go to 127.0.0.1:8888. That brings us into Ambari, which let&#8217;s us visualize what&#8217;s going on in our little Hadoop cluster here.</p>
 </div>
 <div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<div class="title">Important</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Haddop está instalado en la máquina virtual como un contenedor. Para iniciar una sesión SSH en el contenedor deberemos hacerlo por el puerto 2222 (<code>ssh maria_dev@127.0.0.1 -p 2222</code>)</p>
+<p>Hadoop está instalado en la máquina virtual como un contenedor. Para iniciar una sesión SSH en el contenedor deberemos hacerlo por el puerto 2222 (<code>ssh maria_dev@127.0.0.1 -p 2222</code>)</p>
 </div>
 <div class="paragraph">
-<p>Para poder actualizar paquete hay que iniciar sesión como <code>root (su root)</code> y editar con <code>less</code> el archivo <code>\etc\yum.repos.d\sandbox.repo</code> y hacer <code>enabled = 0</code></p>
+<p>Para poder actualizar paquetes hay que iniciar sesión como <code>root (su root)</code> y editar con <code>less</code> el archivo <code>\etc\yum.repos.d\sandbox.repo</code> y hacer <code>enabled = 0</code></p>
 </div>
 </td>
 </tr>
@@ -590,24 +595,19 @@ Automated (with Ambari 2.4) (<a href="https://es.hortonworks.com/downloads/#sand
 <p>The main difference is how much data you can actually handle</p>
 </div>
 <div class="paragraph">
-<p>So, what we&#8217;re going to do is import that movie ratings data that we downloaded into our Hadoop cluster and we&#8217;re going to use something called Hive to actually allow us to execute sequel queries on top of that data, even though it&#8217;s not really being stored in the relational database.</p>
+<p>So, what we&#8217;re going to do is import that movie ratings data that we downloaded into our Hadoop cluster and we&#8217;re going to use something called Hive to actually allow us to execute SQL queries on top of that data, even though it&#8217;s not really being stored in the relational database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Hive View - Upload Table - Upload from local
+Table name:
+
+* Ratings (user_id, movie_id, rating, rating_time)
+* Movie_names (movie_id, name, movie_date)</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Hive View - Upload Table - Upload from local
-Table name:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Ratings (user_id, movie_id, rating, rating_time)</p>
-</li>
-<li>
-<p>Movie_names (movie_id, name, movie_date)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s write a little standard sequel query and, again, this is kinda cool because we&#8217;re not really on a relational database here. This is just a tool called Hive that let&#8217;s us interact with our data on Hadoop as if it were a relational database.</p>
+<p>Let&#8217;s write a little standard SQL query and, again, this is kinda cool because we&#8217;re not really on a relational database here. This is just a tool called Hive that let&#8217;s us interact with our data on Hadoop as if it were a relational database.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -621,9 +621,9 @@ ORDER BY ratingCount DESC;</pre>
 <p>Probar con Visualización SQL, datos, explorer, &#8230;&#8203;</p>
 </div>
 <div class="sect2">
-<h3 id="truewhat-is-hadoop"><a class="anchor" href="#truewhat-is-hadoop"></a>1.1. What is Hadoop</h3>
+<h3 id="_what_is_hadoop">1.1. What is Hadoop</h3>
 <div class="paragraph">
-<p>Well the definition from Hortonworks which is one of the major vendors of Hadoop platforms is an open source software platform for distributed storage and distributed processing very large data sets on computer clusters built from commodity hardware.</p>
+<p>Well, the definition from Hortonworks, which is one of the major vendors of Hadoop platforms, is an open source software platform for distributed storage and distributed processing very large data sets on computer clusters built from commodity hardware.</p>
 </div>
 <div class="paragraph">
 <p>Hadoop gives you a way of viewing all of the data distributed across all of the hard drives in your cluster as one single file system. And not only that it&#8217;s also very redundant. Actually doing that all in a parallel manner so it can actually set all the CPU cores on your entire cluster chugging away on that problem in parallel.</p>
@@ -633,10 +633,10 @@ ORDER BY ratingCount DESC;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueoverview-of-the-hadoop-ecosystem"><a class="anchor" href="#trueoverview-of-the-hadoop-ecosystem"></a>1.2. Overview of the Hadoop Ecosystem</h3>
+<h3 id="_overview_of_the_hadoop_ecosystem">1.2. Overview of the Hadoop Ecosystem</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/CoreHadoopEcosystem.png" alt="CoreHadoopEcosystem.png">
+<img src="./images/CoreHadoopEcosystem.png" alt="CoreHadoopEcosystem">
 </div>
 </div>
 <div class="ulist">
@@ -651,22 +651,22 @@ ORDER BY ratingCount DESC;</pre>
 <p>MapReduce: It is just a programming metaphor or programming model that allows you to process your data across an entire cluster.  Mappers have the ability to transform your data in parallel across your entire computing cluster in a very efficient manner.And reducers are what aggregate that data together.</p>
 </li>
 <li>
-<p>Pig: If you don&#8217;t want to write Java or python map reduce code and you&#8217;re more familiar with a scripting language that has sort of a SQL style syntax Pig is for you.</p>
+<p>Pig: If you don&#8217;t want to write Java or Python MapReduce code and you&#8217;re more familiar with a scripting language that has sort of a SQL style syntax Pig is for you.</p>
 </li>
 <li>
-<p>Hive: It solves a similar problem to pig but it really more directly looks like a SQL database so hive is a way of actually taking SQL queries and making this distributed data that&#8217;s just really sitting on your file system somewhere look like a SQL database. You can even connect to it through a shell client or ODBC or what have you. And actually execute SQL queries on the data that&#8217;s stored on your Hadoop cluster even though it&#8217;s not really a relational database under the hood.</p>
+<p>Hive: It solves a similar problem to Pig but it really more directly looks like a SQL database. So, Hive is a way of actually taking SQL queries and making this distributed data that&#8217;s just really sitting on your file system somewhere look like a SQL database. You can even connect to it through a shell client or ODBC or what have you. And actually execute SQL queries on the data that&#8217;s stored on your Hadoop cluster even though it&#8217;s not really a relational database under the hood.</p>
 </li>
 <li>
 <p>Ambari (el que usa Hortoworks): It is basically this thing that sits on top of everything and it just gives you a view of the state of your cluster and lets you visualize what&#8217;s running on your cluster What systems are using how much resources and also has some views in it that allow you to actually do things like execute hive queries or import databases into hive or execute Pig queries and things like that.</p>
 </li>
 <li>
-<p>Mesos: It isn&#8217;t really part of Hadoop proper but I&#8217;m including it here because it&#8217;s basically an alternative to yarn. Mesos is another potential way of managing the resources on your cluster.</p>
+<p>Mesos: It isn&#8217;t really part of Hadoop proper but I&#8217;m including it here because it&#8217;s basically an alternative to YARN. Mesos is another potential way of managing the resources on your cluster.</p>
 </li>
 <li>
 <p>Spark: Análogo a MapReduce. Es más rápido y es para trabajar con datos en memoria. Además, puede hacer Machine Learning, Procesamiento de datos en streaming en tiempo real</p>
 </li>
 <li>
-<p>HBase: Base de datos NoSQL de columnas para exponer los datos del clúster a plataformas transaccionales ¿?? Se puede usar para exponer los datos de MapReduce o Spark a otros sistemas</p>
+<p>HBase: Base de datos NoSQL de columnas para exponer los datos del clúster a plataformas transaccionales. Tiene gran cantidad de conectores que nos permite cargar o volcar datos a otras BD. Se puede usar para exponer los datos de MapReduce o Spark a otros sistemas</p>
 </li>
 <li>
 <p>Apache Storm: Para procesamiento de datos en streaming</p>
@@ -682,10 +682,10 @@ ORDER BY ratingCount DESC;</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Sqoop: para transferir datos entre bases de datos relacionales y Hadoop</p>
+<p>Sqoop: Para transferir datos entre bases de datos relacionales y Hadoop</p>
 </li>
 <li>
-<p>Flume: It&#8217;s a way of actually transporting Web logs at a very large scale and very reliably to your cluster. So let&#8217;s say you have a fleet of web servers. Flume can actually listen to the web logs coming in from those web servers in real time and publish them into your cluster in real time for processing by something like storm or spark streaming.</p>
+<p>Flume: It&#8217;s a way of actually transporting Web logs at a very large scale and very reliably to your cluster. So let&#8217;s say you have a fleet of web servers. Flume can actually listen to the web logs coming in from those web servers in real time and publish them into your cluster in real time for processing by something like Storm or Spark streaming.</p>
 </li>
 <li>
 <p>Kafka: Kafka solves a similar problem although it&#8217;s a little bit more general purpose. It can basically collect data of any sort from a cluster of PCs from a cluster of web servers or whatever it is and broadcast that into your Hadoop cluster as well.</p>
@@ -737,7 +737,7 @@ ORDER BY ratingCount DESC;</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="truehdfs"><a class="anchor" href="#truehdfs"></a>2. HDFS</h2>
+<h2 id="_hdfs">2. HDFS</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Divide y distribuye archivos de gran tamaño en bloques de 128 MB de forma predeterminada.</p>
@@ -748,7 +748,7 @@ ORDER BY ratingCount DESC;</pre>
 <p>Name node: Guarda dónde está cada bloque de cada archivo</p>
 </li>
 <li>
-<p>Data node: Los que almacenan realmene los datos</p>
+<p>Data node: Los que almacenan realmente los datos</p>
 </li>
 </ul>
 </div>
@@ -756,7 +756,7 @@ ORDER BY ratingCount DESC;</pre>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -773,13 +773,13 @@ ORDER BY ratingCount DESC;</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Crear una carpeta (user &#8594; maria_dev &#8594; ml-100k)</p>
+<p>Crear una carpeta (<code>/user/maria_dev/ml-100k`</code>)</p>
 </li>
 <li>
-<p>Subir el archivo de Movielens (u.data, u.item)</p>
+<p>Subir los archivos de Movielens (<code>u.data, u.item</code>)</p>
 </li>
 <li>
-<p>Renombrarlos</p>
+<p>Renombrarlos y volverlos a dejar con el mismo nombre</p>
 </li>
 </ul>
 </div>
@@ -789,13 +789,13 @@ ORDER BY ratingCount DESC;</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>SSH a maria_dev@127.0.0.1 (puerto 2222)</p>
+<p>SSH a <code>maria_dev@127.0.0.1</code> (puerto 2222)</p>
 </li>
 <li>
-<p>hadoop fs -mkdir ml-100k</p>
+<p><code>hadoop fs -mkdir ml-100k</code></p>
 </li>
 <li>
-<p>hadoop fs -copyFromLocal u.data ml-100K/u.data</p>
+<p><code>hadoop fs -copyFromLocal u.data ml-100K/u.data</code></p>
 </li>
 </ul>
 </div>
@@ -805,60 +805,94 @@ ORDER BY ratingCount DESC;</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="truecomprendiendo-mapreduce"><a class="anchor" href="#truecomprendiendo-mapreduce"></a>3. Comprendiendo MapReduce</h2>
+<h2 id="_comprendiendo_mapreduce">3. Comprendiendo MapReduce</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A partir de un archivo que guarda user_id, movie_id, rating y timestamp, obtener la cantidad de películas que ha valorado cada usuario</p>
+<p>A partir de un archivo que guarda <em>user_id, movie_id, rating</em> y <em>timestamp</em>, obtener la cantidad de películas que ha valorado cada usuario</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceInAction.png" alt="MapReduceInAction.png">
+<img src="./images/MapReduceInAction.png" alt="MapReduceInAction">
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Piensa en la operación <em>Shuffle and sort</em> como un <code>GROUP BY</code> de SQL y en la operación <em>Reduce</em> como las funciones de agregación (<code>COUNT, SUM, AVG, &#8230;&#8203;</code>).</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Otro ejemplo podría ser obtener la cantidad de valoraciones por valoración:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceCantidadValoracionesPorValoracion.png" alt="MapReduceCantidadValoracionesPorValoracion.png">
+<img src="./images/MapReduceCantidadValoracionesPorValoracion.png" alt="MapReduceCantidadValoracionesPorValoracion">
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueel-mapper"><a class="anchor" href="#trueel-mapper"></a>3.1. El Mapper</h3>
+<h3 id="_el_mapper">3.1. El Mapper</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceMapper.png" alt="MapReduceMapper.png">
+<img src="./images/MapReduceMapper.png" alt="MapReduceMapper">
 </div>
 </div>
 <div class="paragraph">
-<p>El <em>mapper</em> toma tres parámetros:
-* La instancia del objeto en el que está contenido
-* No se suele usar en el caso de los mappers
-* La entrada (línea) con la que va a trabajar</p>
+<p>El <em>mapper</em> toma tres parámetros:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La instancia del objeto en el que está contenido</p>
+</li>
+<li>
+<p>No se suele usar en el caso de los mappers</p>
+</li>
+<li>
+<p>La entrada (línea) con la que va a trabajar</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Vamos a extraer 4 variables (userID, movieID, rating, timestam) tras la división de la línea mediante tabuladores.</p>
+<p>Vamos a extraer 4 variables (userID, movieID, rating, timestamp) tras la división de la línea mediante tabuladores.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueel-reducer"><a class="anchor" href="#trueel-reducer"></a>3.2. El Reducer</h3>
+<h3 id="_el_reducer">3.2. El Reducer</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceReducer.png" alt="MapReduceReducer.png">
+<img src="./images/MapReduceReducer.png" alt="MapReduceReducer">
 </div>
 </div>
 <div class="paragraph">
-<p>EL <em>reducer</em> toma tres parámetros:
-* La instancia del objeto en el que se está ejecutando
-* La función reducer que se llamará una vez para cada clave única
-* La lista de valores asociados a la clave</p>
+<p>El <em>reducer</em> toma tres parámetros:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La instancia del objeto en el que se está ejecutando</p>
+</li>
+<li>
+<p>La función reducer que se llamará una vez para cada clave única????</p>
+</li>
+<li>
+<p>La lista de valores asociados a la clave</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="truetodo-junto"><a class="anchor" href="#truetodo-junto"></a>3.3. Todo junto</h3>
+<h3 id="_todo_junto">3.3. Todo junto</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceTodoJunto.png" alt="MapReduceTodoJunto.png">
+<img src="./images/MapReduceTodoJunto.png" alt="MapReduceTodoJunto">
 </div>
 </div>
 <div class="paragraph">
@@ -866,10 +900,13 @@ ORDER BY ratingCount DESC;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueinstalaci-n-de-lo-que-necesitamos"><a class="anchor" href="#trueinstalaci-n-de-lo-que-necesitamos"></a>3.4. Instalación de lo que necesitamos</h3>
+<h3 id="_instalación_de_lo_que_necesitamos">3.4. Instalación de lo que necesitamos</h3>
+<div class="paragraph">
+<p>Recordar que para poder actualizar paquetes hay que iniciar sesión como root (su root) y editar con less el archivo \etc\yum.repos.d\sandbox.repo y hacer enabled = 0</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>yum install epel-release
+<pre class="highlight"><code>yum install epel-release
 yum install python-pip
 pip install mrjob
 yum install nano
@@ -884,7 +921,7 @@ python RatingsBreakdown.py u.data</code></pre>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -892,7 +929,7 @@ python RatingsBreakdown.py u.data</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/haddop-mapreduce-client/hadoop-streaming.jar u.data</code></pre>
+<pre class="highlight"><code>python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/haddop-mapreduce-client/hadoop-streaming.jar u.data</code></pre>
 </div>
 </div>
 </td>
@@ -901,16 +938,16 @@ python RatingsBreakdown.py u.data</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="truemapreduce-con-varios-pasos"><a class="anchor" href="#truemapreduce-con-varios-pasos"></a>3.5. MapReduce con varios pasos</h3>
+<h3 id="_mapreduce_con_varios_pasos">3.5. MapReduce con varios pasos</h3>
 <div class="paragraph">
-<p>¿Qué ocurre si queremos hacer más de un paso map o un paso reduce? Por ejemplo, queremos devolver las películas mejor valoradas.</p>
+<p>¿Qué ocurre si queremos hacer más de un paso Map o un paso Reduce? Por ejemplo, queremos devolver las películas mejor valoradas.</p>
 </div>
 <div class="paragraph">
 <p>Habría que hacer MapReduce para obtener la valoración de cada película y luego ordenarlas.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceMultiplesPasos.png" alt="MapReduceMultiplesPasos.png">
+<img src="./images/MapReduceMultiplesPasos.png" alt="MapReduceMultiplesPasos">
 </div>
 </div>
 <div class="paragraph">
@@ -918,7 +955,7 @@ python RatingsBreakdown.py u.data</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceObtenerNumeros.png" alt="MapReduceObtenerNumeros.png">
+<img src="./images/MapReduceObtenerNumeros.png" alt="MapReduceObtenerNumeros">
 </div>
 </div>
 <div class="paragraph">
@@ -926,7 +963,7 @@ python RatingsBreakdown.py u.data</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReduceSalidaOrdenada.png" alt="MapReduceSalidaOrdenada.png">
+<img src="./images/MapReduceSalidaOrdenada.png" alt="MapReduceSalidaOrdenada">
 </div>
 </div>
 <div class="paragraph">
@@ -934,12 +971,12 @@ python RatingsBreakdown.py u.data</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MapReducePeliculasConMasValoraciones.png" alt="MapReducePeliculasConMasValoraciones.png">
+<img src="./images/MapReducePeliculasConMasValoraciones.png" alt="MapReducePeliculasConMasValoraciones">
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>from mrjob.job import MRJob
+<pre class="highlight"><code>from mrjob.job import MRJob
 from mrjob.step import MRStep
 
 class RatingsBreakdown(MRJob):
@@ -970,19 +1007,19 @@ if __name__ == '__main__':
 </div>
 </div>
 <div class="sect1">
-<h2 id="truepig"><a class="anchor" href="#truepig"></a>4. Pig</h2>
+<h2 id="_pig">4. Pig</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>La creación de mappers y reducers a mano es una tarea pesada.</p>
 </div>
 <div class="paragraph">
-<p>Pig introduce <em>Pig Latin</em>, un lenguaje de scripting con sintaxis tipo SQL para definir pasos map y reduce. Además, se puede extender fácilmente con funciones definidas por usuario (UDF)</p>
+<p>Pig introduce <em>Pig Latin</em>, un lenguaje de scripting con sintaxis tipo SQL para definir pasos Map y Reduce. Además, se puede extender fácilmente con funciones definidas por usuario (UDF)</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -995,14 +1032,9 @@ if __name__ == '__main__':
 <div class="paragraph">
 <p>Ejemplo: Obtener las películas más antiguas con 5 estrellas</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/PigPeliculasAntiguasCon5Estrellas.png" alt="PigPeliculasAntiguasCon5Estrellas.png">
-</div>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ratings = LOAD '/user/maria_dev/ml-100k/rating' AS (userID:int, movieID:int, rating:int, ratingTime:int);
+<pre class="highlight"><code>ratings = LOAD '/user/maria_dev/ml-100k/rating' AS (userID:int, movieID:int, rating:int, ratingTime:int);
 
 metadata = LOAD '/user/maria_dev/ml-100k/movie' USING PigStorage('|') AS (movieID:int, movieTitle:chararray, releaseDate:chararray, videoRelease:chararray, imdblink:chararray);
 
@@ -1026,7 +1058,7 @@ DUMP oldestFiveStarsWithData;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>(493,4.15,493,Thin Man, The (1934),-1136073600)
+<pre class="highlight"><code>(493,4.15,493,Thin Man, The (1934),-1136073600)
 (604,4.012345679012346,604,It Happened One Night (1934),-1136073600)
 (615,4.0508474576271185,615,39 Steps, The (1935),-1104537600)
 (1203,4.0476190476190474,1203,Top Hat (1935),-1104537600)
@@ -1037,11 +1069,11 @@ DUMP oldestFiveStarsWithData;</code></pre>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Pig tiene gran cantidad de operadores y funciones interesantes (CUBE, COGROUP, &#8230;&#8203;), funciones de agregación SIZE y CONCAT, integración con HBase, y más. Consultar <a href="https://pig.apache.org/docs/latest/basic.html#group" class="bare">https://pig.apache.org/docs/latest/basic.html#group</a></p>
+<p>Pig tiene gran cantidad de operadores y funciones interesantes (<code>CUBE, COGROUP</code>, &#8230;&#8203;), funciones de agregación <code>SIZE</code> y <code>CONCAT</code>, integración con HBase, y más. Consultar <a href="https://pig.apache.org/docs/latest/basic.html#group" class="bare">https://pig.apache.org/docs/latest/basic.html#group</a></p>
 </div>
 </td>
 </tr>
@@ -1052,7 +1084,7 @@ DUMP oldestFiveStarsWithData;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>ratings = LOAD '/user/maria_dev/ml-100k/rating' AS (userID:int, movieID:int, rating:int, ratingTime:int);
+<pre class="highlight"><code>ratings = LOAD '/user/maria_dev/ml-100k/rating' AS (userID:int, movieID:int, rating:int, ratingTime:int);
 
 metadata = LOAD '/user/maria_dev/ml-100k/movie' USING PigStorage('|') AS (movieID:int, movieTitle:chararray, releaseDate:chararray, videoRelease:chararray, imdblink:chararray);
 
@@ -1079,7 +1111,7 @@ DUMP finalResult;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>(Leave It to Beaver (1997),1.8409090909090908,44)
+<pre class="highlight"><code>(Leave It to Beaver (1997),1.8409090909090908,44)
 (Mortal Kombat: Annihilation (1997),1.9534883720930232,43)
 (Crow: City of Angels, The (1996),1.9487179487179487,39)
 (Bio-Dome (1996),1.903225806451613,31)
@@ -1089,10 +1121,10 @@ DUMP finalResult;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="truespark"><a class="anchor" href="#truespark"></a>5. Spark</h2>
+<h2 id="_spark">5. Spark</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Spark es un motor rápido para el procesamiento de datos a gran escala. Tiene características interesantes como machine learning, análisis de grafos y datos en streaming.</p>
+<p>Spark es un motor rápido para el procesamiento de datos a gran escala. Tiene características interesantes como Machine learning y Análisis de grafos y datos en streaming.</p>
 </div>
 <div class="paragraph">
 <p>Podemos escribir programas en Java, Python, &#8230;&#8203; que realicen manipulaciones y transformaciones complejas. Lo que lo diferencia de otras tecnologías como Pig es el ecosistema tan rico que hay alrededor de Spark.</p>
@@ -1101,10 +1133,10 @@ DUMP finalResult;</code></pre>
 <p>Spark es una solución basada en memoria por lo que no tiene que estar accediendo constantemente a HDFS. También tiene un motor basado en DAG que optimiza los workflows y lo hace muy rápido.</p>
 </div>
 <div class="paragraph">
-<p>A diferencia de MapReduce, en el que hay que pensar las soluciones en términos de mappers y reducers, Spark proporciona un framework, de la misma manera que Pig ofrece el suyo. Portanto, hay que trabajar en construir la solución del problema obviando cómo se van a distribuir los datos en el cluster.</p>
+<p>A diferencia de MapReduce, en el que hay que pensar las soluciones en términos de mappers y reducers, Spark proporciona un framework, de la misma manera que Pig ofrece el suyo. Por tanto, hay que trabajar en construir la solución del problema obviando cómo se van a distribuir los datos en el cluster.</p>
 </div>
 <div class="paragraph">
-<p>Spark se construyen en torno a lo que se denomina <em>Resilient Distributed Database (RDD)</em>. Se trata básicamente de un objeto que representa a un dataset y al que se le pueden aplicar métodos para transformarlo, reducirlo o analizarlo y producir nuevos RDDs.</p>
+<p>Spark se construye en torno a lo que se denomina <em>Resilient Distributed Database (RDD)</em>. Se trata básicamente de un objeto que representa a un <em>dataset</em> y al que se le pueden aplicar métodos para transformarlo, reducirlo o analizarlo y producir nuevos RDDs.</p>
 </div>
 <div class="paragraph">
 <p>Entre los principales componentes de Spark tenemos:</p>
@@ -1126,16 +1158,16 @@ DUMP finalResult;</code></pre>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="truecreaci-n-de-rdd"><a class="anchor" href="#truecreaci-n-de-rdd"></a>5.1. Creación de RDD</h3>
+<h3 id="_creación_de_rdd">5.1. Creación de RDD</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Para trabar con Spark necesitamos un SparkContext (sc): Creodo por el driver y es responsable de hacer que el dataset sea resilente y distribuido. Es el que crea los RDDs.</p>
+<p>Para trabajar con Spark necesitamos un SparkContext (sc): Creado por el driver y es responsable de hacer que el dataset sea resilente y distribuido. Es el que crea los RDDs.</p>
 </div>
 </td>
 </tr>
@@ -1158,7 +1190,7 @@ DUMP finalResult;</code></pre>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1170,54 +1202,87 @@ DUMP finalResult;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueejemplo-de-operaci-n-map"><a class="anchor" href="#trueejemplo-de-operaci-n-map"></a>5.2. Ejemplo de operación Map</h3>
+<h3 id="_ejemplo_de_operación_map">5.2. Ejemplo de operación Map</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>rdd = sc.parallelize(1, 2, 3, 4])
-squareRDD = rdd.map(lambda x: x * x) <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlight"><code>rdd = sc.parallelize([1, 2, 3, 4])
+squareRDD = rdd.map(lambda x: x * x) <b class="conum">(1)</b>
 
 -- Esto devuelve 1, 4, 9, 16</code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Define una función el línea que toma <code>x</code> como parámetro de entrada y devuelve su cuadrado. Es una forma muy compacta de definir la función. A <code>map</code> se le está pasando una función como argumento.</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>Define una función el línea que toma <code>x</code> como parámetro de entrada y devuelve su cuadrado. Es una forma muy compacta de definir la función. A <code>map</code> se le está pasando una función como argumento.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Transformaciones sobre RDD:
-* map
-* flatmap
-* filter
-* distinct
-* sample
-* union, interesect, substract, cartesian</p>
+<p>Transformaciones sobre RDD:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>map</p>
+</li>
+<li>
+<p>flatmap</p>
+</li>
+<li>
+<p>filter</p>
+</li>
+<li>
+<p>distinct</p>
+</li>
+<li>
+<p>sample</p>
+</li>
+<li>
+<p>union, interesect, substract, cartesian</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Acciones sobre RDD:
-* collect
-* count
-* countByValue
-* take
-* top
-* reduce
-* &#8230;&#8203;</p>
+<p>Acciones sobre RDD:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>collect</p>
+</li>
+<li>
+<p>count</p>
+</li>
+<li>
+<p>countByValue</p>
+</li>
+<li>
+<p>take</p>
+</li>
+<li>
+<p>top</p>
+</li>
+<li>
+<p>reduce</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueejemplo-encontrar-la-pel-cula-con-la-evaluaci-n-media-m-s-baja"><a class="anchor" href="#trueejemplo-encontrar-la-pel-cula-con-la-evaluaci-n-media-m-s-baja"></a>5.3. Ejemplo: Encontrar la película con la evaluación media más baja</h3>
+<h3 id="_ejemplo_encontrar_la_película_con_la_evaluación_media_más_baja">5.3. Ejemplo: Encontrar la película con la evaluación media más baja</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Entrar en Ambari como Admin y modificar la configuración de los servicios Spark 1 y Spark 2.
+<p>Entrar en Ambari como admin y modificar la configuración de los servicios Spark 1 y Spark 2.
 Desplegar <em>Advanced spark-log4j-properties</em> y cambiar <code>log4j.rootCategory</code> al valor <code>ERROR.console</code></p>
 </div>
 </td>
@@ -1227,16 +1292,16 @@ Desplegar <em>Advanced spark-log4j-properties</em> y cambiar <code>log4j.rootCat
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Desde Ambari crear la carpeta ml-100k en maria_dev y subir los archivos u.data y u.info de Movielens</p>
+<p>Desde Ambari crear la carpeta <code>ml-100k</code> en <code>maria_dev`</code> y subir los archivos <code>u.data</code> y <code>u.info</code> de Movielens</p>
 </li>
 <li>
-<p>Conectar por SSH a la máquina virtual a la cuenta de maria_dev</p>
+<p>Conectar por SSH a la máquina virtual a la cuenta de <code>maria_dev</code></p>
 </li>
 <li>
-<p>Crear una carpeta en el home de maria_dev ml-100k y descargar la información de las películas <code>wget <a href="http://media.sundog-soft.com/hadoop/ml-100k/u.info" class="bare">http://media.sundog-soft.com/hadoop/ml-100k/u.info</a></code></p>
+<p>Crear una carpeta en el home de <code>maria_dev ml-100k</code> y descargar la información de las películas <code>wget <a href="http://media.sundog-soft.com/hadoop/ml-100k/u.info" class="bare">http://media.sundog-soft.com/hadoop/ml-100k/u.info</a></code></p>
 </li>
 <li>
-<p>En el home de maria_dev descargar los ejemplos de Spark <code>wget <a href="http://media.sundog-soft.com/hadoop/Spark.zip" class="bare">http://media.sundog-soft.com/hadoop/Spark.zip</a></code></p>
+<p>En el home de <code>maria_dev</code> descargar los ejemplos de Spark <code>wget <a href="http://media.sundog-soft.com/hadoop/Spark.zip" class="bare">http://media.sundog-soft.com/hadoop/Spark.zip</a></code></p>
 </li>
 <li>
 <p>Descomprimir el zip</p>
@@ -1251,7 +1316,7 @@ Desplegar <em>Advanced spark-log4j-properties</em> y cambiar <code>log4j.rootCat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>('3 Ninjas: High Noon At Mega Mountain (1998)', 1.0)
+<pre class="highlight"><code>('3 Ninjas: High Noon At Mega Mountain (1998)', 1.0)
 ('Beyond Bedlam (1993)', 1.0)
 ('Power 98 (1995)', 1.0)
 ('Bloody Child, The (1996)', 1.0)
@@ -1267,7 +1332,7 @@ Desplegar <em>Advanced spark-log4j-properties</em> y cambiar <code>log4j.rootCat
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1279,24 +1344,21 @@ Desplegar <em>Advanced spark-log4j-properties</em> y cambiar <code>log4j.rootCat
 </div>
 </div>
 <div class="sect2">
-<h3 id="truespark-sql"><a class="anchor" href="#truespark-sql"></a>5.4. Spark SQL</h3>
+<h3 id="_spark_sql">5.4. Spark SQL</h3>
 <div class="paragraph">
 <p>Los RDD no son más que un conjunto de filas. No tienen tipo de datos.</p>
 </div>
 <div class="paragraph">
-<p>Los data frames son una extensión de los RDD que contienen objetos cuyas filas contienen datos estructurados. Con los data frames disponemos de columnas y podremos lanzarles consultas.</p>
-</div>
-<div class="paragraph">
-<p>Al tener columnas, se pueden optimizar las consultas haciendo que las respuestas sean más rápidas. Además, nos podremos comunicar mediante JDBC o Tableau y demás, lo que nos permite trabajar a alto nivel.</p>
+<p>En cambio, los data frames son una extensión de los RDD que contienen objetos cuyas filas contienen datos estructurados. Con los data frames disponemos de columnas y podremos lanzarles consultas. Al tener columnas, se pueden optimizar las consultas haciendo que las respuestas sean más rápidas. Además, nos podremos comunicar mediante JDBC o Tableau y demás, lo que nos permite trabajar a alto nivel.</p>
 </div>
 <div class="paragraph">
 <p>Los datasets son un término más general que los data frames. Los datasets pueden guardar información con tipo pero necesariamente no tienen por que ser una fila como ocurre con los data frames.</p>
 </div>
 <div class="sect3">
-<h4 id="trueejemplo-las-10-pel-culas-con-valoraci-n-media-m-s-baja"><a class="anchor" href="#trueejemplo-las-10-pel-culas-con-valoraci-n-media-m-s-baja"></a>5.4.1. Ejemplo: Las 10 películas con valoración media más baja</h4>
+<h4 id="_ejemplo_las_10_películas_con_valoración_media_más_baja">5.4.1. Ejemplo: Las 10 películas con valoración media más baja</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>from pyspark.sql import SparkSession
+<pre class="highlight"><code>from pyspark.sql import SparkSession
 from pyspark.sql import Row
 from pyspark.sql import functions
 
@@ -1363,7 +1425,7 @@ if __name__ == "__main__":
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>('Further Gesture, A (1996)', 1, 1.0)
+<pre class="highlight"><code>('Further Gesture, A (1996)', 1, 1.0)
 ('Falling in Love Again (1980)', 2, 1.0)
 ('Amityville: Dollhouse (1996)', 3, 1.0)
 ('Power 98 (1995)', 1, 1.0)
@@ -1377,7 +1439,7 @@ if __name__ == "__main__":
 </div>
 </div>
 <div class="sect3">
-<h4 id="trueejemplo-las-10-pel-culas-peor-valoradas-por-al-menos-10-personas"><a class="anchor" href="#trueejemplo-las-10-pel-culas-peor-valoradas-por-al-menos-10-personas"></a>5.4.2. Ejemplo: Las 10 películas peor valoradas por al menos 10 personas</h4>
+<h4 id="_ejemplo_las_10_películas_peor_valoradas_por_al_menos_10_personas">5.4.2. Ejemplo: Las 10 películas peor valoradas por al menos 10 personas</h4>
 <div class="paragraph">
 <p>Con esto conseguimos evitar películas que hayan sido valoradas por muy pocas personas (p.e. 1)</p>
 </div>
@@ -1386,7 +1448,7 @@ if __name__ == "__main__":
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>from pyspark import SparkConf, SparkContext
+<pre class="highlight"><code>from pyspark import SparkConf, SparkContext
 
 # This function just creates a Python "dictionary" we can later
 # use to convert movie ID's to movie names while printing out
@@ -1447,7 +1509,7 @@ if __name__ == "__main__":
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1459,7 +1521,7 @@ if __name__ == "__main__":
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>from pyspark.sql import SparkSession
+<pre class="highlight"><code>from pyspark.sql import SparkSession
 from pyspark.sql import Row
 from pyspark.sql import functions
 
@@ -1517,7 +1579,7 @@ if __name__ == "__main__":
 </div>
 </div>
 <div class="sect1">
-<h2 id="truehive"><a class="anchor" href="#truehive"></a>6. Hive</h2>
+<h2 id="_hive">6. Hive</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Hive nos permite ver un cluster Hadoop como si fuese una base de datos relacional. Con Hive podemos consultar los datos del cluster en SQL.</p>
@@ -1534,10 +1596,10 @@ if __name__ == "__main__":
 <p>Latencia alta. Las consultas tienen que ser traducidas a MapReduce y los trabajos MapReduce tardan bastante en ponerse en marcha.</p>
 </li>
 <li>
-<p>Los datos debven guardarse de forma desnormalizada para que aumente la velocidad de las consultas</p>
+<p>Los datos deben guardarse de forma desnormalizada para que aumente la velocidad de las consultas</p>
 </li>
 <li>
-<p>Realmente, no es una base de datos por lo que no hay transacciones no permite operaciones de inserción, modificación o eliminación.</p>
+<p>Realmente, no es una base de datos por lo que no hay transacciones y no permite operaciones de inserción, modificación o eliminación.</p>
 </li>
 </ul>
 </div>
@@ -1546,7 +1608,7 @@ if __name__ == "__main__":
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>CREATE VIEW IF NOT EXISTS topRatingMovies AS
+<pre class="highlight"><code>CREATE VIEW IF NOT EXISTS topRatingMovies AS
 SELECT movie_id, COUNT(*) AS ratingCount
 FROM rating
 GROUP BY movie_id
@@ -1557,28 +1619,27 @@ FROM movie m JOIN topRatingMovies t ON m.movie_id = t.movie_ID;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueparticionado"><a class="anchor" href="#trueparticionado"></a>6.1. Particionado</h3>
+<h3 id="_particionado">6.1. Particionado</h3>
 <div class="paragraph">
 <p>Es posible crear particiones de una tabla a partir de los valores de una o varias  columnas. Esto hace que se almacene cada partición como un subdirectorio.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>CREATE TABLE page_view(viewTime INT,
+<pre class="highlight"><code>CREATE TABLE page_view(viewTime INT,
 userid BIGINT,
 page_url STRING,
 referrer_url STRING,
 friends ARRAY&lt;BIGINT&gt;,
 properties MAP&lt;STRING, STRING&gt;)
-PARTITIONED BY(dt STRING, country STRING) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+PARTITIONED BY(dt STRING, country STRING) <b class="conum">(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Creará particiones para cada combinación de valores diferentes de <code>dt</code> y <code>country</code>.</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>Creará particiones para cada combinación de valores diferentes de <code>dt</code> y <code>country</code>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Al hacer la consulta Hive seleccionará las particiones adecuadas si se usan las columnas <code>dt</code> y <code>country</code> en la consulta.</p>
@@ -1588,7 +1649,7 @@ PARTITIONED BY(dt STRING, country STRING) <i class="conum" data-value="1"></i><b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>CREATE VIEW IF NOT EXISTS topRatingMovies AS
+<pre class="highlight"><code>CREATE VIEW IF NOT EXISTS topRatingMovies AS
 SELECT movie_id, COUNT(*) AS ratingCount, AVG(rating) as ratingAvg
 FROM rating
 GROUP BY movie_id
@@ -1603,45 +1664,43 @@ WHERE ratingCount &gt; 10;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="truesqoop"><a class="anchor" href="#truesqoop"></a>7. Sqoop</h2>
+<h2 id="_sqoop">7. Sqoop</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SQL + Hadoop. Nos permite importar y exportar datos de bases de datos relacionales y Hadoop.</p>
+<p>Abreviatura de SQL + Hadoop. Nos permite importar y exportar datos de bases de datos relacionales y Hadoop.</p>
 </div>
 <div class="paragraph">
 <p>Ejemplo: Importar una tabla a Hadoop</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>sqoop import --connect jdbc:mysql://localhost/movielens --table movies <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlight"><code>sqoop import --connect jdbc:mysql://localhost/movielens --table movies <b class="conum">(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Importa la tabla <code>movies</code> de la base de datos <code>movielens</code>.</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>Importa la tabla <code>movies</code> de la base de datos <code>movielens</code>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Ejemplo: Importar una tabla a Hive</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>sqoop import --connect jdbc:mysql://localhost/movielens --table movies --hive-import <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlight"><code>sqoop import --connect jdbc:mysql://localhost/movielens --table movies --hive-import <b class="conum">(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>El parámetro <code>--hive-import</code> hace que la importación se lleve a cabo en Hive.</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>El parámetro <code>--hive-import</code> hace que la importación se lleve a cabo en Hive.</p>
+</li>
+</ol>
 </div>
 <div class="sect2">
-<h3 id="trueincremental-imports"><a class="anchor" href="#trueincremental-imports"></a>7.1. Incremental imports</h3>
+<h3 id="_incremental_imports">7.1. Incremental imports</h3>
 <div class="paragraph">
 <p>Incremental imports are performed by comparing the values in a check column against a reference value for the most recent import. For example, if the <code>--incremental</code> append argument was specified, along with <code>--check-column id</code> and <code>--last-value 100</code>, all rows with <code>id &gt; 100</code> will be imported.</p>
 </div>
@@ -1650,31 +1709,29 @@ WHERE ratingCount &gt; 10;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueexportar-datos-a-mysql"><a class="anchor" href="#trueexportar-datos-a-mysql"></a>7.2. Exportar datos a MySQL</h3>
+<h3 id="_intercambio_de_datos_con_mysql">7.2. Intercambio de datos con MySQL</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>sqoop export --connect jdbc:mysql://db.example.com/foo \
---table exported_movies \ <i class="conum" data-value="1"></i><b>(1)</b>
---export-dir /apps/hive/warehouse/movie <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlight"><code>sqoop export --connect jdbc:mysql://db.example.com/foo \
+--table exported_movies \ <b class="conum">(1)</b>
+--export-dir /apps/hive/warehouse/movie <b class="conum">(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Tabla de destino en MySQL. Tiene que existir</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Path en Hadoop que contiene los datos a exportar de Hive</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>Tabla de destino en MySQL. Tiene que existir</p>
+</li>
+<li>
+<p>Path en Hadoop que contiene los datos a exportar de Hive</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1685,28 +1742,27 @@ WHERE ratingCount &gt; 10;</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/MySQLResetPassword.png" alt="MySQLResetPassword.png">
+<img src="./images/MySQLResetPassword.png" alt="MySQLResetPassword">
 </div>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Ejemplo: Importar datos a MySQL</p>
-</div>
+<div class="sect3">
+<h4 id="_ejemplo_importar_datos_a_mysql">7.2.1. Ejemplo: Importar datos a MySQL</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>mysql&gt; create database movielens;
+<pre class="highlight"><code>mysql&gt; create database movielens;
 mysql&gt; exit;
 
-[maria_dev@sandbox ~]$ wget http://media.sundog-soft.com/hadoop/movielens.sql <i class="conum" data-value="1"></i><b>(1)</b>
+[maria_dev@sandbox ~]$ wget http://media.sundog-soft.com/hadoop/movielens.sql <b class="conum">(1)</b>
 
-mysql&gt; SET NAMES 'utf8'; <i class="conum" data-value="2"></i><b>(2)</b>
+mysql&gt; SET NAMES 'utf8'; <b class="conum">(2)</b>
 mysql&gt; SET CHARACTER SET 'utf8';
 
 mysql&gt; use movielens;
-mysql&gt; source movielens.sql <i class="conum" data-value="3"></i><b>(3)</b>
+mysql&gt; source movielens.sql <b class="conum">(3)</b>
 mysql&gt; show tables;
 +---------------------+
 | Tables_in_movielens |
@@ -1719,82 +1775,76 @@ mysql&gt; show tables;
 | users               |
 +---------------------+
 
-mysql&gt; GRANT ALL PRIVILEGES ON movielens.* TO ''@'localhost'; <i class="conum" data-value="4"></i><b>(4)</b>
+mysql&gt; GRANT ALL PRIVILEGES ON movielens.* TO ''@'localhost'; <b class="conum">(4)</b>
 
-[maria_dev@sandbox ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver --table movies <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+[maria_dev@sandbox ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver --table movies <b class="conum">(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Script que inicializa unas tablas de usuarios, películas y ratings.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Configurar los juegos de caracteres</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Inicializar las tablas de la base de datos en MySQL</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Abrir todos los permisos en <code>localhost</code> para que podamos exportar desde Sqoop los datos de MySQL a Hadoop</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Importar los datos de MySQL a Hadoop. Los datos estarán en la vista de archivos del usuario <code>maria_dev</code>.</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>Script que inicializa unas tablas de usuarios, películas y ratings.</p>
+</li>
+<li>
+<p>Configurar los juegos de caracteres</p>
+</li>
+<li>
+<p>Inicializar las tablas de la base de datos en MySQL</p>
+</li>
+<li>
+<p>Abrir todos los permisos en <code>localhost</code> para que podamos exportar desde Sqoop los datos de MySQL a Hadoop</p>
+</li>
+<li>
+<p>Importar los datos de MySQL a Hadoop. Los datos estarán en la vista de archivos del usuario <code>maria_dev</code>.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Para importar los datos en Hive, primero deberíamos borrar el directorio <code>movies</code> de <code>maria_dev</code>, ya que la importación a Hive volverá a crearlo como paso intermedio para volcar los datos en él antes de importarlos a Hive.</p>
+<p>Para importar los datos a Hive, primero deberíamos borrar el directorio <code>movies</code> de <code>maria_dev</code>, ya que la importación a Hive volverá a crearlo como paso intermedio para volcar los datos en él antes de importarlos a Hive.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[maria_dev@sandbox ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver --table movies --hive-import</code></pre>
+<pre class="highlight"><code>[maria_dev@sandbox ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver --table movies --hive-import</code></pre>
 </div>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Ejemplo: Exportar datos a MySQL</p>
 </div>
+<div class="sect3">
+<h4 id="_ejemplo_exportar_datos_a_mysql">7.2.2. Ejemplo: Exportar datos a MySQL</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>mysql&gt; use movielens;
-mysql&gt; CREATE TABLE exported_movies (id INTEGER, title VARCHAR(255), releaseDate DATE); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlight"><code>mysql&gt; use movielens;
+mysql&gt; CREATE TABLE exported_movies (id INTEGER, title VARCHAR(255), releaseDate DATE); <b class="conum">(1)</b>
 
-[maria_dev@sandbox ~]$ sqoop export --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver --table exported_movies --export-dir /apps/hive/warehouse/movies --input-fields-terminated-by '\0001' <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+[maria_dev@sandbox ~]$ sqoop export --connect jdbc:mysql://localhost/movielens --driver com.mysql.jdbc.Driver --table exported_movies --export-dir /apps/hive/warehouse/movies --input-fields-terminated-by '\0001' <b class="conum">(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>La tabla de destino tiene que estar creada antes de hacer la exportación</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>No olvidar indicar <code>--input-fields-terminated-by '\0001'</code></td>
-</tr>
-</table>
+<ol>
+<li>
+<p>La tabla de destino tiene que estar creada antes de hacer la exportación</p>
+</li>
+<li>
+<p>No olvidar indicar <code>--input-fields-terminated-by '\0001'</code></p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="truehbase"><a class="anchor" href="#truehbase"></a>8. HBase</h2>
+<h2 id="_hbase">8. HBase</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1820,7 +1870,7 @@ El servicio atenderá peticiones HTTP para almacenar y recuperar datos a través
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/HBaseRatingColumnFamily.png" alt="HBaseRatingColumnFamily.png">
+<img src="./images/HBaseRatingColumnFamily.png" alt="HBaseRatingColumnFamily">
 </div>
 </div>
 <div class="paragraph">
@@ -1832,26 +1882,25 @@ El servicio atenderá peticiones HTTP para almacenar y recuperar datos a través
 <p>Expondremos el servicio a través de un puerto de la máquina virtual de HDP. En Virtual Box configuraremos `Settings | Network | Advanced | Port Forwarding. Añadiremos una regla denominada <strong>HBase REST</strong> que mapeará los puertos <strong>8000</strong>.</p>
 </li>
 <li>
-<p>Iniciar sesión en Ambari cono admin e iniciar el servicio HBase.</p>
+<p>Iniciar sesión en Ambari cono <code>admin</code> e iniciar el servicio HBase.</p>
 </li>
 <li>
 <p>Iniciar sesión SSH en la máquina virtual</p>
 </li>
 <li>
-<p>Cambiar al usuario <code>root</code> y arrancar el servicio REST de HBase ([root@sandbox maria_dev]# /usr/hdp/current/hbase-master/bin/hbase-daemon.sh start rest -p 8000 --infoport 8001
-)</p>
+<p>Cambiar al usuario <code>root</code> y arrancar el servicio REST de HBase (<code>[root@sandbox maria_dev]# /usr/hdp/current/hbase-master/bin/hbase-daemon.sh start rest -p 8000 --infoport 8001</code>)</p>
 </li>
 <li>
 <p>Instalar con <code>pip</code> el módulo <code>starbase</code> para poder interactuar con HBase.</p>
 </li>
 <li>
-<p>Ejecutar el script Python que carga la tabla HBase y muestra un ejemplo de valoraciones de dos usuarios (<code>%python &#8230;&#8203;./HBaseExamples.py</code>)</p>
+<p>Ejecutar el script Python que carga la tabla HBase y muestra un ejemplo de valoraciones de dos usuarios (<code>python &#8230;&#8203;./HBaseExamples.py</code>)</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>from starbase import Connection
+<pre class="highlight"><code>from starbase import Connection
 
 c = Connection("127.0.0.1", "8000")
 
@@ -1888,7 +1937,7 @@ print (ratings.fetch("33"))</code></pre>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1904,7 +1953,7 @@ print (ratings.fetch("33"))</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="trueuso-de-pig-para-la-carga-de-datos-en-hbase"><a class="anchor" href="#trueuso-de-pig-para-la-carga-de-datos-en-hbase"></a>8.1. Uso de Pig para la carga de datos en HBase</h3>
+<h3 id="_uso_de_pig_para_la_carga_de_datos_en_hbase">8.1. Uso de Pig para la carga de datos en HBase</h3>
 <div class="paragraph">
 <p>Usar Python para la carga de datos en HBase queda limitado porque sólo dispone del espacio que le proporciona el disco desde el equipo desde el que se lanza.</p>
 </div>
@@ -1915,7 +1964,7 @@ print (ratings.fetch("33"))</code></pre>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1945,7 +1994,7 @@ print (ratings.fetch("33"))</code></pre>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1957,7 +2006,7 @@ print (ratings.fetch("33"))</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trueejemplo-cargar-con-pig-la-tabla-de-usuarios-en-hbase"><a class="anchor" href="#trueejemplo-cargar-con-pig-la-tabla-de-usuarios-en-hbase"></a>8.2. Ejemplo: Cargar con Pig la tabla de usuarios en HBase</h3>
+<h3 id="_ejemplo_cargar_con_pig_la_tabla_de_usuarios_en_hbase">8.2. Ejemplo: Cargar con Pig la tabla de usuarios en HBase</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1970,25 +2019,24 @@ print (ratings.fetch("33"))</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">[maria_dev@sandbox ~]$ hbase shell
+<pre class="highlight"><code class="language-bash" data-lang="bash">[maria_dev@sandbox ~]$ hbase shell
 
-hbase(main):002:0&gt; create 'users','userinfo'  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+hbase(main):002:0&gt; create 'users','userinfo'  <b class="conum">(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Crear una tabla <code>users</code> con una familia de columnas denominada <code>userinfo</code></td>
-</tr>
-</table>
+<ol>
+<li>
+<p>Crear una tabla <code>users</code> con una familia de columnas denominada <code>userinfo</code></p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Este sería el script Pig que usaríamos. En el script vemos que el ID es único y es la primera columna. También se ve el mapeo de las columnas del archivo HDFS contra la familia de columnas.</p>
+<p>Este sería el script Pig que usaríamos. En el script vemos que el ID único ocupa la primera columna. También se ve el mapeo de las columnas del archivo HDFS contra la familia de columnas.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>users = LOAD '/user/maria_dev/ml-100k/u.user'
+<pre class="highlight"><code>users = LOAD '/user/maria_dev/ml-100k/u.user'
 USING PigStorage('|')
 AS (userID:int, age:int, gender:chararray, occupation:chararray, zip:int);
 
@@ -2002,7 +2050,7 @@ USING org.apache.pig.backend.hadoop.hbase.HBaseStorage (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[maria_dev@sandbox HadoopMaterials]$ pig hbase.pig</code></pre>
+<pre class="highlight"><code>[maria_dev@sandbox HadoopMaterials]$ pig hbase.pig</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2010,9 +2058,9 @@ USING org.apache.pig.backend.hadoop.hbase.HBaseStorage (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>hbase(main):004:0&gt; scan users
+<pre class="highlight"><code>hbase(main):004:0&gt; scan users
 ...
- 99                   column=userinfo:age, timestamp=1537097539475, value=20    <i class="conum" data-value="1"></i><b>(1)</b>
+ 99                   column=userinfo:age, timestamp=1537097539475, value=20    <b class="conum">(1)</b>
  99                   column=userinfo:gender, timestamp=1537097539475, value=M
  99                   column=userinfo:occupation, timestamp=1537097539475, value
                       =student
@@ -2021,12 +2069,11 @@ USING org.apache.pig.backend.hadoop.hbase.HBaseStorage (
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>El resultado muestra la familia de columnas <code>userinfo</code> del usuario 99. La familia de columnas está formada por cuatro columnas: <code>age</code>, <code>gender</code>, <code>occupation</code> y <code>zip</code>.</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>El resultado muestra la familia de columnas <code>userinfo</code> del usuario 99. La familia de columnas está formada por cuatro columnas: <code>age</code>, <code>gender</code>, <code>occupation</code> y <code>zip</code>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Para eliminar la tabla primero hay que desactivarla con <code>disable</code></p>
@@ -2035,42 +2082,54 @@ USING org.apache.pig.backend.hadoop.hbase.HBaseStorage (
 </div>
 </div>
 <div class="sect1">
-<h2 id="truecassandra"><a class="anchor" href="#truecassandra"></a>9. Cassandra</h2>
+<h2 id="_cassandra">9. Cassandra</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Es un DBMS distribuido que no tiene un punto de fallo único. A diferencia de HBase, no tiene nodo máster (el nodo que guarda qué datos guarda cada nodo). Está concebido para la disponibilidad.
-* Su modelo de datos es similar al de HBase/BigTable
-* Ofrece CQL, su lenguaje de consulta
-* Cassandra proporciona consistencia eventual.</p>
+<p>Es un DBMS distribuido que no tiene un punto de fallo único. A diferencia de HBase, no tiene nodo máster (el nodo que guarda qué datos guarda cada nodo). Está concebido para la disponibilidad.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Su modelo de datos es similar al de HBase/BigTable</p>
+</li>
+<li>
+<p>Ofrece CQL, su lenguaje de consulta</p>
+</li>
+<li>
+<p>Cassandra proporciona consistencia eventual.</p>
+</li>
+</ul>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">El Teorema de CAP, consistencia eventual y consistencia ajustable</div>
 <div class="paragraph">
-<p>Siguiendo el Teorema de CAP, los problemas de Big Data necesitan Tolerancia a fallos (usamos HDFS y nuestro sistema es distribuido y tolerante a fallos de partida), por lo que tenemos que decidir entre Consistencia y Disponibilidad. Cassandra elige consistencia eventual porque si envías un post a una red social no se cae el mundo si el resto de usuarios no ven el post hasta que no pasen 2 ó 3 segundos, lo que tarde en propagar el cambio por todo el cluster.</p>
+<p>Siguiendo el Teorema de CAP, los problemas de Big Data necesitan Tolerancia a fallos (usamos HDFS y nuestro sistema es distribuido y tolerante a fallos de partida), por lo que tenemos que decidir entre Consistencia y Disponibilidad. Cassandra sacrifica Disponibilidad ofreciendo <em>consistencia eventual</em> porque si envías un post a una red social no se cae el mundo si el resto de usuarios no ven el post hasta que no pasen 2 ó 3 segundos, lo que tarde en propagar el cambio por todo el cluster.</p>
 </div>
 <div class="paragraph">
-<p>No obstante, en Cassandra se puede ajustar el número de nodos que tienen que confirmar la recepción de un cambio para que se por correcto. Es lo que se conoce como <em>Consistencia ajustable</em></p>
+<p>No obstante, en Cassandra se puede ajustar el número de nodos que tienen que confirmar la recepción de un cambio para que se dé por correcto. Es lo que se conoce como <em>Consistencia ajustable</em></p>
 </div>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/cap-theorem.png" alt="cap theorem.png">
+<img src="./images/cap-theorem.png" alt="cap theorem">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Podemos tener Cassandra operativo independientemente de Hadoop, por ejemplo, sirviendo a un sitio web. No obstante, se puede crear una copia para Hadoop para enriquecerlo con capacidades analíticas (Hive, Sparrk, &#8230;&#8203;)</p>
+<p>Podemos tener Cassandra operativo independientemente de Hadoop, por ejemplo, sirviendo a un sitio web. No obstante, se puede crear una copia para Hadoop para enriquecerlo con capacidades analíticas (Hive, Spark, &#8230;&#8203;)</p>
 </li>
 <li>
 <p>CQL tiene algunas limitaciones respecto a SQL</p>
 <div class="ulist">
 <ul>
 <li>
-<p>No hay joins por lo que todos los datos tienen que estar desnormalizados
-**Las consultas tienen que ser sobre la clave primaria. No se admiten índices secundarios</p>
+<p>No hay joins por lo que todos los datos tienen que estar desnormalizados</p>
+</li>
+<li>
+<p>Las consultas tienen que ser sobre la clave primaria. No se admiten índices secundarios</p>
 </li>
 </ul>
 </div>
@@ -2083,7 +2142,7 @@ USING org.apache.pig.backend.hadoop.hbase.HBaseStorage (
 <p>Analítica de datos almacenados en Cassandra</p>
 </li>
 <li>
-<p>Tranbsformar y guardar datos en Cassandra para uso transaccional</p>
+<p>Transformar y guardar datos en Cassandra para uso transaccional</p>
 </li>
 </ul>
 </div>
@@ -2091,16 +2150,16 @@ USING org.apache.pig.backend.hadoop.hbase.HBaseStorage (
 </ul>
 </div>
 <div class="sect2">
-<h3 id="trueinstalaci-n-de-cassandra"><a class="anchor" href="#trueinstalaci-n-de-cassandra"></a>9.1. Instalación de Cassandra</h3>
+<h3 id="_instalación_de_cassandra">9.1. Instalación de Cassandra</h3>
 <div class="admonitionblock caution">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<div class="title">Caution</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>La máquina virtual quue estamos usando de Hortoworks contiene un sandbox en un contenedor Docker. Su versión de sistema operativo CentOS requiere Python 2.6. Sin embargo Cassandra necesita Python 2.7.</p>
+<p>La máquina virtual quue estamos usando de Hortonworks contiene un sandbox en un contenedor Docker. Su versión de sistema operativo CentOS requiere Python 2.6. Sin embargo Cassandra necesita Python 2.7.</p>
 </div>
 </td>
 </tr>
@@ -2170,15 +2229,18 @@ gpgcheck = 0</pre>
 <p><code>cqlsh:movielens&gt; DESCRIBE TABLE users;</code></p>
 </li>
 <li>
-<p><code>cqlsh:movielens&gt; SELECT * FROM users;</code><mark>#</mark> Carga de datos en Cassandra desde Spark</p>
+<p><code>cqlsh:movielens&gt; SELECT * FROM users;</code></p>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_carga_de_datos_en_cassandra_desde_spark">9.2. Carga de datos en Cassandra desde Spark</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -2186,7 +2248,7 @@ gpgcheck = 0</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code># export SPARK_MAJOR_VERSION=2</code></pre>
+<pre class="highlight"><code># export SPARK_MAJOR_VERSION=2</code></pre>
 </div>
 </div>
 </td>
@@ -2198,7 +2260,7 @@ gpgcheck = 0</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>from pyspark.sql import SparkSession
+<pre class="highlight"><code>from pyspark.sql import SparkSession
 from pyspark.sql import Row
 from pyspark.sql import functions
 
@@ -2244,22 +2306,143 @@ if __name__ == "__main__":
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11 CassandraSpark.py <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlight"><code>spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11 CassandraSpark.py <b class="conum">(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Indicamos la versión 2.0.0 de del conector compatible con Spark 2.0 y Scala 2.11. Estos parámetros se ajustarán a la versión con la que estemos ejecutando.</td>
-</tr>
-</table>
+<ol>
+<li>
+<p>Indicamos la versión 2.0.0 de del conector compatible con Spark 2.0 y Scala 2.11. Estos parámetros se ajustarán a la versión con la que estemos ejecutando.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="truelinks"><a class="anchor" href="#truelinks"></a>10. Links</h2>
+<h2 id="_mongodb">10. MongoDB</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En el triángulo del teorema de CAP, MongoDB se sitúa en CP. Al manejar Big Data está comprometido con Tolerancia a fallos. Y a la hora de elegir entre Consistencia y Disponibilidad, elige Consistencia. La Disponibilidad la deja <em>comprometida</em> teniendo un único máster, la base de datos a la que tienes que dirigirte si necesitas consistencia. Si el máster cae hay un periodo de no disponbilidad mientras otro master vuelve a estar disponible.</p>
+</div>
+<div class="paragraph">
+<p>El éxito de MongoDB se debe en gran parte a la flexibildad de su modelo de datos. Entre sus principales características:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Estructura de documentos flexible</p>
+</li>
+<li>
+<p>No es necesaria la creación de una <em>clave</em> por parte nuestra.</p>
+</li>
+<li>
+<p>Permite la creación de índices, incluyendo índices fulltext e índices espaciales</p>
+</li>
+<li>
+<p>Permite la creación de shards sobre alguno de los índices definidos</p>
+</li>
+<li>
+<p>Dispone de un sistema de archivos propio para particionado, denominado GridFS, que permite evitar el uso de Hadoop para usar HDFS.</p>
+</li>
+<li>
+<p>Existe una base de datos principal y nodos secundarios conectados a la principal donce se replican los datos. Por tanto, no va a servir para Big data, ya que l oque tenemos son copias de una base de datos monolítica.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>MongoDB ofrece un conector SQL que tracuce consultas SQL a consultas en MongoDB. Es útil para integrar MongoDB con herramientas de BI de las usadas con bases de datos relacionales. <a href="https://docs.mongodb.com/bi-connector/master/supported-operations/" class="bare">https://docs.mongodb.com/bi-connector/master/supported-operations/</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_detalles_a_tener_en_cuenta_con_los_replica_sets">10.1. Detalles a tener en cuenta con los Replica Sets</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Es necesario contar con una mayoria impar de un número impar de servidores. Partimos de 3.</p>
+</li>
+<li>
+<p>Las aplicaciones tienen que tener conocimiento de varios servidores del replica set para poder llegar al principal</p>
+</li>
+<li>
+<p>Las réplicas ofrecen durabilidad. No es convinente leer de los secundarios.</p>
+</li>
+<li>
+<p>La base de datos queda en modo lectura mientras se elige un nuevo primario.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sharding">10.2. Sharding</h3>
+<div class="paragraph">
+<p>Para conseguir Big data con MongoDB necesitamos <em>sharding</em>. Se combina con los replica sets de forma que cada replica set es responsable de un rango de valores de acuerdo a un índice definido previamente. El servidor de aplicaciones ejecuta un proceso denominado <code>mongos</code> que interactúa con los <em>servidores de configuración</em> que son los que saben cómo está definido el <em>sharding</em> y en qué servidores están los datos que necesitamos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El -<em>sharding</em> también tiene sus caprichos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El autosharding puede provocar lo que se denomina_split storms_, en el que los procesos <code>mongos</code> se reinician continuamente porque intenta rebalancear los <em>shards</em> pero no consigue hacerlo a tiempo y vuelve a comenzar a rebalancear.</p>
+</li>
+<li>
+<p>Hay que tener 3 servidores de configuración. Si uno de ellos cae, la base de datos también cae.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instalación_de_mongodb">10.3. Instalación de MongoDB</h3>
+<div class="paragraph">
+<p>Es posible instalar MongoDB como un servicio de Ambari</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@sandbox maria_dev]# cd /var/lib/ambari-server/resources/stacks/HDP/2.5/services/
+[root@sandbox services]# ls
+ACCUMULO  HBASE  KERBEROS  OOZIE       SLIDER  stack_advisor.py   TEZ
+ATLAS     HDFS   KNOX      PIG         SPARK   stack_advisor.pyc  YARN
+FALCON    HIVE   MAHOUT    RANGER      SPARK2  stack_advisor.pyo  ZEPPELIN
+FLUME     KAFKA  NIFI      RANGER_KMS  SQOOP   STORM              ZOOKEEPER
+
+[root@sandbox services]# git clone http://github.com/nikunjness/mongo-ambari.git
+
+[root@sandbox services]# service ambari restart</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación, desde Ambari y conectados como <code>admin</code>, añadimos el servicio MongoDB en el desplegable de <code>Actions</code></p>
+</div>
+<div class="paragraph">
+<p>pip install pymongo</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_links">11. Links</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -2279,11 +2462,8 @@ if __name__ == "__main__":
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-19 11:54:16 CEST
+Last updated 2018-09-20 16:19:01 CEST
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
 </body>
 </html>
